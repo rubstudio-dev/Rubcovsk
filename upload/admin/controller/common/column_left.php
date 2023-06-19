@@ -55,7 +55,7 @@ class ControllerCommonColumnLeft extends Controller {
 			$organization = array();
 
 			$organization[] = array(
-				'name'     => 'Список организации',
+				'name'     => 'Список организаций',
 				'href'     => $this->url->link('catalog/organizations', 'user_token=' . $this->session->data['user_token'], true),
 				'children' => array()
 			);
