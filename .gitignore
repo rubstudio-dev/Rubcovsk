@@ -1,3 +1,7 @@
+# Config and Htaccess Files
+/upload/config.php
+/upload/admin/config.php
+
 # Image File
 !/upload/image/no_image.jpg
 
