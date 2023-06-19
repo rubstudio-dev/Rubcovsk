@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'https://localhost/upload/');
+define('HTTP_SERVER', 'http://localhost/upload/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://localhost/upload/');
+define('HTTPS_SERVER', 'http://localhost/upload/');
 
 // DIR
 define('DIR_APPLICATION', 'C:/OSPanel/domains/localhost/upload/catalog/');

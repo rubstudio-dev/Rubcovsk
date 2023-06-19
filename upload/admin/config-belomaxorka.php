@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'https://localhost/upload/admin/');
-define('HTTP_CATALOG', 'https://localhost/upload/');
+define('HTTP_SERVER', 'http://localhost/upload/admin/');
+define('HTTP_CATALOG', 'http://localhost/upload/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://localhost/upload/admin/');
-define('HTTPS_CATALOG', 'https://localhost/upload/');
+define('HTTPS_SERVER', 'http://localhost/upload/admin/');
+define('HTTPS_CATALOG', 'http://localhost/upload/');
 
 // DIR
 define('DIR_APPLICATION', 'C:/OSPanel/domains/localhost/upload/admin/');
