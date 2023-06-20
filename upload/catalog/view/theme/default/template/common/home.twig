@@ -1,7 +1,5 @@
 {{ header }}
 
-<!--<div class="weather"></div>-->
-
 <div id="common-home">
     <div class="">{{ column_left }}
         {% if column_left and column_right %}
@@ -12,6 +10,18 @@
             {% set class = '' %}
         {% endif %}
         <div id="content" class="{{ class }}">
+            <div class="position-absolute m-2 z-1">
+                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
+                    <ion-icon name="search"></ion-icon>
+                </button>
+                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
+                    <ion-icon name="briefcase"></ion-icon>
+                </button>
+                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
+                    <ion-icon name="person-circle"></ion-icon>
+                </button>
+            </div>
+
             <div class="min-vh-100 z-0" id="map"></div>
             <script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RyaWtlcnVzIiwiYSI6ImNqcHhxYnR5YjBvaWg0NHRkc2g0NnNtanAifQ.3549JQDbk8rr2Vx4qhDYxA';
@@ -152,7 +162,7 @@
                     var requestURL2 = "https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b";
                     jQuery.get('https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b', function (responseText) {
                         var temp = toCelsius(responseText['main']['temp']) + ' °C';
-                        jQuery('.weather').text(temp);
+                        jQuery('#weather').text(temp);
                     });
 
                     function toCelsius(f) {
