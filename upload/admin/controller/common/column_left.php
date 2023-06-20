@@ -54,11 +54,13 @@ class ControllerCommonColumnLeft extends Controller {
 			// Organizations
 			$organization = array();
 
-			$organization[] = array(
-				'name'     => 'Список организаций',
-				'href'     => $this->url->link('catalog/organizations', 'user_token=' . $this->session->data['user_token'], true),
-				'children' => array()
-			);
+			if ($this->user->hasPermission('access', 'catalog/organization')) {
+				$organization[] = array(
+					'name' => 'Список организаций',
+					'href' => $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()
+				);
+			}
 
 			if ($organization) {
 				$data['menus'][] = array(
