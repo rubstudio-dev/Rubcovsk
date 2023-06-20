@@ -12,7 +12,7 @@
             {% set class = '' %}
         {% endif %}
         <div id="content" class="{{ class }}">
-            <div class="min-vh-100" id="map"></div>
+            <div class="min-vh-100 z-0" id="map"></div>
             <script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RyaWtlcnVzIiwiYSI6ImNqcHhxYnR5YjBvaWg0NHRkc2g0NnNtanAifQ.3549JQDbk8rr2Vx4qhDYxA';
                 const map = new mapboxgl.Map({
@@ -160,7 +160,7 @@
                     }
                 });
             </script>
-            
+
             {{ content_top }}{{ content_bottom }}</div>
         {{ column_right }}</div>
 </div>
