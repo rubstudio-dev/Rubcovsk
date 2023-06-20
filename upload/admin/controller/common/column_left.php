@@ -62,6 +62,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'catalog/organization_cat')) {
+				$organization[] = array(
+					'name' => 'Категории организаций',
+					'href' => $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()
+				);
+			}
+
 			if ($organization) {
 				$data['menus'][] = array(
 					'id'       => 'menu-organizations',

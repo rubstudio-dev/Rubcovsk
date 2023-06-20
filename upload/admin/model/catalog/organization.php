@@ -27,10 +27,6 @@ class ModelCatalogOrganization extends Model
 	{
 	}
 
-	public function getOrganizationDescriptions($organization_id)
-	{
-	}
-
 	public function getTotalOrganizations()
 	{
 	}
