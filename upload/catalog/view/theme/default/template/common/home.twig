@@ -175,7 +175,7 @@
                         const weather_desc = responseText['weather'][0]['description']; // Описание
 
                         // Формирование url к картинке
-                        const icon_url = 'http://openweathermap.org/img/w/' + weather_icon + '.png';
+                        const icon_url = 'https://openweathermap.org/img/w/' + weather_icon + '.png';
 
                         jQuery('#weather_icon').attr('src', icon_url);
                         jQuery('#weather_name').text(weather_name);
