@@ -5,7 +5,7 @@
       <div class="pull-right"><a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-attribute').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>
-      <h1>{{ heading_title }}</h1>
+      <h1>Список организаций</h1>
       <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
         <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
@@ -62,7 +62,7 @@
                     {% else %}
                     <input type="checkbox" name="selected[]" value="{{ attribute.attribute_id }}" />
                     {% endif %}</td>
-                  <td class="text-left">{{ attribute.name }}</td>
+                  <td class="text-left">Название организации</td>
                   <td class="text-left">{{ attribute.attribute_group }}</td>
                   <td class="text-right">{{ attribute.sort_order }}</td>
                   <td class="text-right"><a href="{{ attribute.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
