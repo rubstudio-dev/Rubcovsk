@@ -159,10 +159,18 @@
             <script>
                 $(window).load(function () {
                     // Set default input values on page load
-                    var requestURL2 = "https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b";
                     jQuery.get('https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b', function (responseText) {
-                        const temp = toCelsius(responseText['main']['temp']) + ' °C';
-                        jQuery('#weather').text(temp);
+                        // Базовая информация из запроса
+                        const temp = toCelsius(responseText['main']['temp']) + ' °C'; // Текущая температура
+                        const feels_like = toCelsius(responseText['main']['feels_like']) + ' °C'; // Ощущается как..
+                        const humidity = responseText['main']['humidity']; // Влажность
+
+                        // Информация о погода (Иконка, описание, название)
+                        const weather = responseText['weather'];
+
+                        jQuery('#temp').text(temp);
+                        jQuery('#feels_like').text(feels_like);
+                        jQuery('#humidity').text(humidity);
                     });
 
                     function toCelsius(f) {
