@@ -11,7 +11,7 @@
         {% endif %}
         <div id="content" class="{{ class }}">
             <div class="position-absolute m-2 z-1">
-                <div class="bg-light text-muted shadow-sm fs-4 rounded-5 mb-2 p-2 text-center">
+                <div class="bg-light text-muted shadow-sm fs-4 rounded-4 mb-2 p-2 text-center">
                     <span class="fw-bold" id="weather">Загрузка...😊</span>
                 </div>
                 <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
@@ -161,10 +161,10 @@
 
             <script>
                 $(window).load(function () {
-                    // Set default input values on page load
+                    //Set default input values on page load
                     var requestURL2 = "https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b";
                     jQuery.get('https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b', function (responseText) {
-                        const temp = toCelsius(responseText['main']['temp']) + ' °C';
+                        var temp = toCelsius(responseText['main']['temp']) + ' °C';
                         jQuery('#weather').text(temp);
                     });
 
