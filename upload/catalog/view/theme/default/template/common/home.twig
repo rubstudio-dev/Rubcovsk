@@ -20,6 +20,15 @@
                 <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
                     <ion-icon name="person-circle"></ion-icon>
                 </button>
+
+                <div class="bg-light text-muted fs-5 rounded-5 mt-3 p-2 text-center">
+                    Температура: <span id="temp"></span><br>
+                    Ощущается как: <span id="feels_like"></span><br>
+                    Влажность: <span id="humidity"></span><br>
+                    Иконка: <img alt="Погода" height="50" width="50" id="weather_icon"><br>
+                    Название погоды: <span id="weather_name"></span><br>
+                    Описание погоды: <span id="weather_desc"></span>
+                </div>
             </div>
 
             <div class="min-vh-100 z-0" id="map"></div>
@@ -170,7 +179,7 @@
                         jQuery('#humidity').text(humidity);
 
                         // Информация о погода (Иконка, описание, название)
-                        const weather_icon = 'https://openweathermap.org/img/w/' + responseText['weather'][0]['icon'] + '.png'; // Иконка
+                        const weather_icon = 'image/catalog/icons/' + responseText['weather'][0]['icon'] + '.png'; // Иконка
                         const weather_name = responseText['weather'][0]['main']; // Название
                         const weather_desc = responseText['weather'][0]['description']; // Описание
 
