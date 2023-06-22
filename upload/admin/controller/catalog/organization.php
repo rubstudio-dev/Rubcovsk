@@ -76,7 +76,10 @@ class ControllerCatalogOrganization extends Controller
 			'href' => $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
-		$data['attributes'] = array();
+		$data['add'] = $this->url->link('catalog/organization/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('catalog/organization/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
+
+		$data['organizations'] = array();
 
 		$filter_data = array(
 			'sort' => $sort,
@@ -90,12 +93,12 @@ class ControllerCatalogOrganization extends Controller
 		$results = $this->model_catalog_organization->getOrganizations($filter_data);
 
 		foreach ($results as $result) {
-			$data['attributes'][] = array(
-				'attribute_id' => $result['attribute_id'],
+			$data['organizations'][] = array(
+				'organizations_id' => $result['attribute_id'],
 				'name' => $result['name'],
-				'attribute_group' => $result['attribute_group'],
+				'organizations_cat' => $result['attribute_group'],
 				'sort_order' => $result['sort_order'],
-				'edit' => $this->url->link('catalog/attribute/edit', 'user_token=' . $this->session->data['user_token'] . '&attribute_id=' . $result['attribute_id'] . $url, true)
+				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&organization_id=' . $result['attribute_id'] . $url, true)
 			);
 		}
 
@@ -132,7 +135,7 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		$data['sort_name'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=ad.name' . $url, true);
-		$data['sort_attribute_group'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=attribute_group' . $url, true);
+		$data['sort_organization_cat'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=organization_cat' . $url, true);
 		$data['sort_sort_order'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=a.sort_order' . $url, true);
 
 		$url = '';
@@ -157,15 +160,6 @@ class ControllerCatalogOrganization extends Controller
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
-
-		$data['header'] = $this->load->controller('common/header');
-		$data['column_left'] = $this->load->controller('common/column_left');
-		$data['footer'] = $this->load->controller('common/footer');
-
-		$this->response->setOutput($this->load->view('catalog/attribute_list', $data));
-
-		$data['add'] = $this->url->link('catalog/organization/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
-		$data['delete'] = $this->url->link('catalog/organization/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
