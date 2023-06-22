@@ -157,6 +157,7 @@
             </script>
 
             <script>
+                // Получаем информацию о погоде
                 $(window).load(function () {
                     // Set default input values on page load
                     jQuery.get('https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b', function (responseText) {
@@ -165,12 +166,18 @@
                         const feels_like = toCelsius(responseText['main']['feels_like']) + ' °C'; // Ощущается как..
                         const humidity = responseText['main']['humidity']; // Влажность
 
-                        // Информация о погода (Иконка, описание, название)
-                        const weather = responseText['weather'];
-
                         jQuery('#temp').text(temp);
                         jQuery('#feels_like').text(feels_like);
                         jQuery('#humidity').text(humidity);
+
+                        // Информация о погода (Иконка, описание, название)
+                        const weather_icon = responseText['weather'][0]['icon']; // Иконка
+                        const weather_name = responseText['weather'][0]['main']; // Название
+                        const weather_desc = responseText['weather'][0]['description']; // Описание
+
+                        jQuery('#weather_icon').text(weather_icon);
+                        jQuery('#weather_name').text(weather_name);
+                        jQuery('#weather_desc').text(weather_desc);
                     });
 
                     function toCelsius(f) {
