@@ -170,14 +170,11 @@
                         jQuery('#humidity').text(humidity);
 
                         // Информация о погода (Иконка, описание, название)
-                        const weather_icon = responseText['weather'][0]['icon']; // Иконка
+                        const weather_icon = 'https://openweathermap.org/img/w/' + responseText['weather'][0]['icon'] + '.png'; // Иконка
                         const weather_name = responseText['weather'][0]['main']; // Название
                         const weather_desc = responseText['weather'][0]['description']; // Описание
 
-                        // Формирование url к картинке
-                        const icon_url = 'https://openweathermap.org/img/w/' + weather_icon + '.png';
-
-                        jQuery('#weather_icon').attr('src', icon_url);
+                        jQuery('#weather_icon').attr('src', weather_icon);
                         jQuery('#weather_name').text(weather_name);
                         jQuery('#weather_desc').text(weather_desc);
                     });
