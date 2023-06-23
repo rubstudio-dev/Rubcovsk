@@ -26,8 +26,17 @@ class ModelCatalogOrganization extends Model
 		$this->db->query("DELETE FROM " . DB_PREFIX . "org_items WHERE id = '" . (int)$organization_id . "'");
 	}
 
+	/**
+	 * Получаем информацию об организации по ID
+	 *
+	 * @param $organization_id
+	 * @return mixed
+	 */
 	public function getOrganization($organization_id)
 	{
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE id = '" . (int)$organization_id . "'");
+
+		return $query->row;
 	}
 
 	/**
