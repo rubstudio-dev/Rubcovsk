@@ -107,4 +107,17 @@ class ModelCatalogOrganization extends Model
 
 		return $query->row['total'];
 	}
+
+	/**
+	 * Число организаций по ID категории
+	 *
+	 * @param $cat_id
+	 * @return mixed
+	 */
+	public function getTotalOrganizationsByCatId($cat_id)
+	{
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "org_items WHERE cat_id = '" . (int)$cat_id . "'");
+
+		return $query->row['total'];
+	}
 }
