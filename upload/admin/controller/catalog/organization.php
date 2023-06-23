@@ -134,7 +134,7 @@ class ControllerCatalogOrganization extends Controller
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_name'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=ad.name' . $url, true);
+		$data['sort_name'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url, true);
 		$data['sort_cat_id'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=cat_id' . $url, true);
 
 		$url = '';
