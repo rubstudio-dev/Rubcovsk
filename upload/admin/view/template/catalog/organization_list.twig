@@ -54,18 +54,18 @@
                 </tr>
               </thead>
               <tbody>
-                {% if attributes %}
-                {% for attribute in attributes %}
+                {% if organizations %}
+                {% for organization in organizations %}
                 <tr>
-                  <td class="text-center">{% if attribute.attribute_id in selected %}
-                    <input type="checkbox" name="selected[]" value="{{ attribute.attribute_id }}" checked="checked" />
+                  <td class="text-center">{% if organization.id in selected %}
+                    <input type="checkbox" name="selected[]" value="{{ organization.id }}" checked="checked" />
                     {% else %}
-                    <input type="checkbox" name="selected[]" value="{{ attribute.attribute_id }}" />
+                    <input type="checkbox" name="selected[]" value="{{ organization.id }}" />
                     {% endif %}</td>
-                  <td class="text-left">Название организации</td>
-                  <td class="text-left">{{ attribute.attribute_group }}</td>
+                  <td class="text-left">{{ organization.name }}</td>
+                  <td class="text-left">{{ organization.cat_id }}</td>
                   <td class="text-right">{{ attribute.sort_order }}</td>
-                  <td class="text-right"><a href="{{ attribute.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-right"><a href="{{ organization.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 {% endfor %}
                 {% else %}
