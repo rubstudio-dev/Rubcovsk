@@ -94,11 +94,11 @@ class ControllerCatalogOrganization extends Controller
 
 		foreach ($results as $result) {
 			$data['organizations'][] = array(
-				'organizations_id' => $result['attribute_id'],
+				'id' => $result['id'],
 				'name' => $result['name'],
-				'organizations_cat' => $result['attribute_group'],
-				'sort_order' => $result['sort_order'],
-				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&organization_id=' . $result['attribute_id'] . $url, true)
+				'cat_id' => $result['cat_id'],
+				'sort_order' => $result['ordering'],
+				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&organization_id=' . $result['id'] . $url, true)
 			);
 		}
 
