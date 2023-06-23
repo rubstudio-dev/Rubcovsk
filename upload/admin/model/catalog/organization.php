@@ -15,8 +15,15 @@ class ModelCatalogOrganization extends Model
 	{
 	}
 
+	/**
+	 * Удаляет организацию по ID
+	 *
+	 * @param $organization_id
+	 * @return void
+	 */
 	public function deleteOrganization($organization_id)
 	{
+		$this->db->query("DELETE FROM " . DB_PREFIX . "org_items WHERE id = '" . (int)$organization_id . "'");
 	}
 
 	public function getOrganization($organization_id)
