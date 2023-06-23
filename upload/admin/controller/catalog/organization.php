@@ -35,7 +35,7 @@ class ControllerCatalogOrganization extends Controller
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'ad.name';
+			$sort = 'name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -96,9 +96,9 @@ class ControllerCatalogOrganization extends Controller
 			$data['organizations'][] = array(
 				'id' => $result['id'],
 				'name' => $result['name'],
+				'desc' => $result['intro_desc'],
 				'cat_id' => $result['cat_id'],
-				'sort_order' => $result['ordering'],
-				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&organization_id=' . $result['id'] . $url, true)
+				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
 			);
 		}
 
@@ -135,8 +135,7 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		$data['sort_name'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=ad.name' . $url, true);
-		$data['sort_organization_cat'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=organization_cat' . $url, true);
-		$data['sort_sort_order'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=a.sort_order' . $url, true);
+		$data['sort_cat_id'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . '&sort=cat_id' . $url, true);
 
 		$url = '';
 
