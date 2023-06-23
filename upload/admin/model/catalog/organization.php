@@ -23,6 +23,12 @@ class ModelCatalogOrganization extends Model
 	{
 	}
 
+	/**
+	 * Возвращает список организаций
+	 *
+	 * @param $data
+	 * @return mixed
+	 */
 	public function getOrganizations($data = array())
 	{
 		$sql = "SELECT * FROM " . DB_PREFIX . "org_items";
@@ -59,6 +65,19 @@ class ModelCatalogOrganization extends Model
 		$query = $this->db->query($sql);
 
 		return $query->rows;
+	}
+
+	/**
+	 * Получаем название категории по id
+	 *
+	 * @param $cat_id
+	 * @return mixed
+	 */
+	public function getCatNameById($cat_id)
+	{
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
+
+		return $query->row['name'];
 	}
 
 	/**
