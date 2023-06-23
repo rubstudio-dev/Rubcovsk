@@ -40,6 +40,7 @@
                     {% else %}
                     <a href="{{ sort_name }}">Название</a>
                     {% endif %}</td>
+                  <td class="text-left">Алиас</td>
                   <td class="text-left">Описание</td>
                   <td class="text-left">{% if sort == 'cat_id' %}
                     <a href="{{ sort_cat_id }}" class="{{ order|lower }}">Категория</a>
@@ -59,6 +60,7 @@
                     <input type="checkbox" name="selected[]" value="{{ organization.id }}" />
                     {% endif %}</td>
                   <td class="text-left">{{ organization.name }}</td>
+                  <td class="text-left">{{ organization.alias }}</td>
                   <td class="text-left">{{ organization.desc }}</td>
                   <td class="text-left">{{ organization.cat_id }}</td>
                   <td class="text-right"><a href="{{ organization.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>

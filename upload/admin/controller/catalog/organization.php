@@ -96,6 +96,7 @@ class ControllerCatalogOrganization extends Controller
 			$data['organizations'][] = array(
 				'id' => $result['id'],
 				'name' => $result['name'],
+				'alias' => $result['alias'],
 				'desc' => $result['intro_desc'],
 				'cat_id' => $result['cat_id'],
 				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
