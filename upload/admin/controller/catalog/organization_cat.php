@@ -37,6 +37,10 @@ class ControllerCatalogOrganizationCat extends Controller
 
 		$this->load->model('catalog/organization_cat');
 
+		if (!isset($this->request->post['selected']) && !empty($this->request->get['id'])) {
+			$this->request->post['selected'] = (array)$this->request->get['id'];
+		}
+
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $organization_cat_id) {
 				$this->model_catalog_organization_cat->deleteOrganizationCat($organization_cat_id);
@@ -137,6 +141,7 @@ class ControllerCatalogOrganizationCat extends Controller
 				'name' => $result['name'],
 				'alias' => $result['alias'],
 				'desc' => $result['description'],
+				'delete' => $this->url->link('catalog/organization_cat/delete', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true),
 				'edit' => $this->url->link('catalog/organization_cat/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
 			);
 		}

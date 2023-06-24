@@ -63,7 +63,10 @@
                   <td class="text-left">{{ organization.alias }}</td>
                   <td class="text-left">{{ organization.desc }}</td>
                   <td class="text-left">{{ organization.cat_id }}</td>
-                  <td class="text-right"><a href="{{ organization.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-right">
+                    <a href="{{ organization.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                    <a data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? window.location.replace('{{ organization.delete }}') : false;"><i class="fa fa-trash-o"></i></a>
+                  </td>
                 </tr>
                 {% endfor %}
                 {% else %}
