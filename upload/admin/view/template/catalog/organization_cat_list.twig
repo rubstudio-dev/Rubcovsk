@@ -3,9 +3,9 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right"><a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-        <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-attribute').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-organization-cat').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>
-      <h1>{{ heading_title }}</h1>
+      <h1>Категории организаций</h1>
       <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
         <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
@@ -26,46 +26,44 @@
     {% endif %}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+        <h3 class="panel-title"><i class="fa fa-list"></i> Список категорий</h3>
       </div>
       <div class="panel-body">
-        <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-attribute">
+        <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-organization-cat">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
-                  <td class="text-left">{% if sort == 'ad.name' %}
-                    <a href="{{ sort_name }}" class="{{ order|lower }}">{{ column_name }}</a>
+                  <td class="text-left">{% if sort == 'name' %}
+                    <a href="{{ sort_name }}" class="{{ order|lower }}">Название</a>
                     {% else %}
-                    <a href="{{ sort_name }}">{{ column_name }}</a>
+                    <a href="{{ sort_name }}">Название</a>
                     {% endif %}</td>
-                  <td class="text-left">{% if sort == 'attribute_group' %}
-                    <a href="{{ sort_attribute_group }}" class="{{ order|lower }}">{{ column_attribute_group }}</a>
+                  <td class="text-left">Алиас</td>
+                  <td class="text-left">Описание</td>
+                  <td class="text-left">{% if sort == 'id' %}
+                    <a href="{{ sort_id }}" class="{{ order|lower }}">Категория</a>
                     {% else %}
-                    <a href="{{ sort_attribute_group }}">{{ column_attribute_group }}</a>
+                    <a href="{{ sort_id }}">Категория</a>
                     {% endif %}</td>
-                  <td class="text-right">{% if sort == 'a.sort_order' %}
-                    <a href="{{ sort_sort_order }}" class="{{ order|lower }}">{{ column_sort_order }}</a>
-                    {% else %}
-                    <a href="{{ sort_sort_order }}">{{ column_sort_order }}</a>
-                    {% endif %}</td>
-                  <td class="text-right">{{ column_action }}</td>
+                  <td class="text-right">Действие</td>
                 </tr>
               </thead>
               <tbody>
-                {% if attributes %}
-                {% for attribute in attributes %}
+                {% if organizations %}
+                {% for organization in organizations %}
                 <tr>
-                  <td class="text-center">{% if attribute.attribute_id in selected %}
-                    <input type="checkbox" name="selected[]" value="{{ attribute.attribute_id }}" checked="checked" />
+                  <td class="text-center">{% if organization.id in selected %}
+                    <input type="checkbox" name="selected[]" value="{{ organization.id }}" checked="checked" />
                     {% else %}
-                    <input type="checkbox" name="selected[]" value="{{ attribute.attribute_id }}" />
+                    <input type="checkbox" name="selected[]" value="{{ organization.id }}" />
                     {% endif %}</td>
-                  <td class="text-left">{{ attribute.name }}</td>
-                  <td class="text-left">{{ attribute.attribute_group }}</td>
-                  <td class="text-right">{{ attribute.sort_order }}</td>
-                  <td class="text-right"><a href="{{ attribute.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-left">{{ organization.name }}</td>
+                  <td class="text-left">{{ organization.alias }}</td>
+                  <td class="text-left">{{ organization.desc }}</td>
+                  <td class="text-left">{{ organization.cat_id }}</td>
+                  <td class="text-right"><a href="{{ organization.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 {% endfor %}
                 {% else %}
