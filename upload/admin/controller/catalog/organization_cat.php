@@ -35,7 +35,7 @@ class ControllerCatalogOrganizationCat extends Controller
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'id';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -79,7 +79,7 @@ class ControllerCatalogOrganizationCat extends Controller
 		$data['add'] = $this->url->link('catalog/organization_cat/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		$data['delete'] = $this->url->link('catalog/organization_cat/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
-		$data['organizations'] = array();
+		$data['organizations_cats'] = array();
 
 		$filter_data = array(
 			'sort' => $sort,
@@ -93,7 +93,7 @@ class ControllerCatalogOrganizationCat extends Controller
 		$results = $this->model_catalog_organization_cat->getOrganizationsCats($filter_data);
 
 		foreach ($results as $result) {
-			$data['organizations'][] = array(
+			$data['organizations_cats'][] = array(
 				'id' => $result['id'],
 				'name' => $result['name'],
 				'alias' => $result['alias'],
