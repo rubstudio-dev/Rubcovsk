@@ -26,10 +26,49 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 	}
 
+	/**
+	 * Удаление категории
+	 *
+	 * @return void
+	 */
 	public function delete()
 	{
+		$this->document->setTitle('Категории организаций');
+
+		$this->load->model('catalog/organization_cat');
+
+		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+			foreach ($this->request->post['selected'] as $organization_cat_id) {
+				$this->model_catalog_organization_cat->deleteOrganizationCat($organization_cat_id);
+			}
+
+			$this->session->data['success'] = 'Вы успешно удалили категорию';
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . $url, true));
+		}
+
+		$this->getList();
 	}
 
+	/**
+	 * Формируем список категорий
+	 *
+	 * @return void
+	 */
 	protected function getList()
 	{
 		if (isset($this->request->get['sort'])) {
@@ -175,8 +214,18 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 	}
 
+	/**
+	 * Проверка прав для удаления
+	 *
+	 * @return bool
+	 */
 	protected function validateDelete()
 	{
+		if (!$this->user->hasPermission('modify', 'catalog/organization_cat')) {
+			$this->error['warning'] = 'Недостаточно прав!';
+		}
+
+		return !$this->error;
 	}
 
 	public function autocomplete()
