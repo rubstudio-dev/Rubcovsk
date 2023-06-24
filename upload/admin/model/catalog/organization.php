@@ -84,19 +84,6 @@ class ModelCatalogOrganization extends Model
 	}
 
 	/**
-	 * Получаем название категории по id
-	 *
-	 * @param $cat_id
-	 * @return mixed
-	 */
-	public function getCatNameById($cat_id)
-	{
-		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
-
-		return $query->row['name'];
-	}
-
-	/**
 	 * Число организаций
 	 *
 	 * @return mixed

@@ -14,6 +14,7 @@ class ControllerCatalogOrganization extends Controller
 		$this->document->setTitle('Список организаций');
 
 		$this->load->model('catalog/organization');
+		$this->load->model('catalog/organization_cat');
 
 		$this->getList();
 	}
@@ -98,7 +99,7 @@ class ControllerCatalogOrganization extends Controller
 				'name' => $result['name'],
 				'alias' => $result['alias'],
 				'desc' => $result['intro_desc'],
-				'cat_id' => $result['cat_id'] . '&nbsp;' . '(' . $this->model_catalog_organization->getCatNameById($result['cat_id']) . ')',
+				'cat_id' => $result['cat_id'] . '&nbsp;' . '(' . $this->model_catalog_organization_cat->getCatNameById($result['cat_id']) . ')',
 				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
 			);
 		}

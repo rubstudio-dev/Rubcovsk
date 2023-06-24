@@ -15,14 +15,36 @@ class ModelCatalogOrganizationCat extends Model
 	{
 	}
 
+	/**
+	 * Удаляет категорию по ID
+	 *
+	 * @param $organization_cat_id
+	 * @return void
+	 */
 	public function deleteOrganizationCat($organization_cat_id)
 	{
+		$this->db->query("DELETE FROM " . DB_PREFIX . "org_categories WHERE id = '" . (int)$organization_cat_id . "'");
 	}
 
+	/**
+	 * Получаем информацию об категории по ID
+	 *
+	 * @param $organization_cat_id
+	 * @return mixed
+	 */
 	public function getOrganizationCat($organization_cat_id)
 	{
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_categories WHERE id = '" . (int)$organization_cat_id . "'");
+
+		return $query->row;
 	}
 
+	/**
+	 * Возвращает список категорий
+	 *
+	 * @param $data
+	 * @return mixed
+	 */
 	public function getOrganizationsCats($data = array())
 	{
 		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories";
@@ -61,8 +83,17 @@ class ModelCatalogOrganizationCat extends Model
 		return $query->rows;
 	}
 
-	public function getOrganizationCatDescriptions($organization_cat_id)
+	/**
+	 * Получаем название категории по id
+	 *
+	 * @param $cat_id
+	 * @return mixed
+	 */
+	public function getCatNameById($cat_id)
 	{
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
+
+		return $query->row['name'];
 	}
 
 	/**
