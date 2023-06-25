@@ -35,7 +35,25 @@ class ControllerCatalogOrganization extends Controller
 		$this->load->model('catalog/organization');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->model_catalog_organization->editOrganization($this->request->get['id'], $this->request->post);
 
+			$this->session->data['success'] = 'Вы успешно отредактировали организацию';
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
