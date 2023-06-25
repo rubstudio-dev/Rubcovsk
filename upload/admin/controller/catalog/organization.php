@@ -227,8 +227,14 @@ class ControllerCatalogOrganization extends Controller
 		$this->response->setOutput($this->load->view('catalog/organization_list', $data));
 	}
 
+	/**
+	 * Форма организации (Создание / Редактирование)
+	 *
+	 * @return void
+	 */
 	protected function getForm()
 	{
+		$data['text_form'] = !isset($this->request->get['id']) ? 'Создание организации' : 'Редактирование организации';
 	}
 
 	/**

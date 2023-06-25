@@ -225,8 +225,14 @@ class ControllerCatalogOrganizationCat extends Controller
 		$this->response->setOutput($this->load->view('catalog/organization_cat_list', $data));
 	}
 
+	/**
+	 * Форма категории (Создание / Редактирование)
+	 *
+	 * @return void
+	 */
 	protected function getForm()
 	{
+		$data['text_form'] = !isset($this->request->get['id']) ? 'Создание категории' : 'Редактирование категории';
 	}
 
 	/**
