@@ -308,6 +308,30 @@ class ControllerCatalogOrganizationCat extends Controller
 			$organization_cat_info = $this->model_catalog_organization_cat->getOrganizationCat($this->request->get['id']);
 		}
 
+		if (isset($this->request->post['name'])) {
+			$data['cat_name'] = $this->request->post['name'];
+		} elseif (!empty($organization_cat_info)) {
+			$data['cat_name'] = $organization_cat_info['name'];
+		} else {
+			$data['cat_name'] = '';
+		}
+
+		if (isset($this->request->post['alias'])) {
+			$data['cat_alias'] = $this->request->post['alias'];
+		} elseif (!empty($organization_cat_info)) {
+			$data['cat_alias'] = $organization_cat_info['alias'];
+		} else {
+			$data['cat_alias'] = '';
+		}
+
+		if (isset($this->request->post['description'])) {
+			$data['cat_description'] = $this->request->post['description'];
+		} elseif (!empty($organization_cat_info)) {
+			$data['cat_description'] = $organization_cat_info['description'];
+		} else {
+			$data['cat_description'] = '';
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

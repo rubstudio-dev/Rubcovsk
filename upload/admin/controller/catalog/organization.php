@@ -310,6 +310,38 @@ class ControllerCatalogOrganization extends Controller
 			$organization_info = $this->model_catalog_organization->getOrganization($this->request->get['id']);
 		}
 
+		if (isset($this->request->post['cat_id'])) {
+			$data['organization_cat_id'] = $this->request->post['cat_id'];
+		} elseif (!empty($organization_info)) {
+			$data['organization_cat_id'] = $organization_info['cat_id'];
+		} else {
+			$data['organization_cat_id'] = '';
+		}
+
+		if (isset($this->request->post['name'])) {
+			$data['organization_name'] = $this->request->post['name'];
+		} elseif (!empty($organization_info)) {
+			$data['organization_name'] = $organization_info['name'];
+		} else {
+			$data['organization_name'] = '';
+		}
+
+		if (isset($this->request->post['alias'])) {
+			$data['organization_alias'] = $this->request->post['alias'];
+		} elseif (!empty($organization_info)) {
+			$data['organization_alias'] = $organization_info['alias'];
+		} else {
+			$data['organization_alias'] = '';
+		}
+
+		if (isset($this->request->post['intro_desc'])) {
+			$data['organization_intro_desc'] = $this->request->post['intro_desc'];
+		} elseif (!empty($organization_info)) {
+			$data['organization_intro_desc'] = $organization_info['intro_desc'];
+		} else {
+			$data['organization_intro_desc'] = '';
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
