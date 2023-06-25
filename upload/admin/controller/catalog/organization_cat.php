@@ -33,7 +33,7 @@ class ControllerCatalogOrganizationCat extends Controller
 
 		$this->load->model('catalog/organization_cat');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
 			$this->model_catalog_organization_cat->editOrganizationCat($this->request->get['id'], $this->request->post);
 
 			$this->session->data['success'] = 'Вы успешно отредактировали категорию';
@@ -73,7 +73,7 @@ class ControllerCatalogOrganizationCat extends Controller
 			$this->request->post['selected'] = (array)$this->request->get['id'];
 		}
 
-		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+		if (isset($this->request->post['selected']) && $this->checkPermission()) {
 			foreach ($this->request->post['selected'] as $organization_cat_id) {
 				$this->model_catalog_organization_cat->deleteOrganizationCat($organization_cat_id);
 			}
@@ -252,23 +252,11 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 		$data['text_form'] = !isset($this->request->get['id']) ? 'Создание категории' : 'Редактирование категории';
 
+		$data['error_warning'] = '';
+
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
 		}
-
-		/*if (isset($this->error['name'])) {
-			$data['error_name'] = $this->error['name'];
-		} else {
-			$data['error_name'] = array();
-		}
-
-		if (isset($this->error['attribute_group'])) {
-			$data['error_attribute_group'] = $this->error['attribute_group'];
-		} else {
-			$data['error_attribute_group'] = '';
-		}*/
 
 		$url = '';
 
@@ -340,25 +328,11 @@ class ControllerCatalogOrganizationCat extends Controller
 	}
 
 	/**
-	 * Проверка прав для формы (Создание / Редактирование)
+	 * Проверка прав
 	 *
 	 * @return bool
 	 */
-	protected function validateForm()
-	{
-		if (!$this->user->hasPermission('modify', 'catalog/organization_cat')) {
-			$this->error['warning'] = 'Недостаточно прав!';
-		}
-
-		return !$this->error;
-	}
-
-	/**
-	 * Проверка прав для удаления
-	 *
-	 * @return bool
-	 */
-	protected function validateDelete()
+	protected function checkPermission()
 	{
 		if (!$this->user->hasPermission('modify', 'catalog/organization_cat')) {
 			$this->error['warning'] = 'Недостаточно прав!';

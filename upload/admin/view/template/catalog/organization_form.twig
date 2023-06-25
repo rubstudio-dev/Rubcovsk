@@ -3,9 +3,9 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-        <button type="submit" form="form-attribute" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <button type="submit" form="form-organization" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
         <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
-      <h1>{{ heading_title }}</h1>
+      <h1>Список организаций</h1>
       <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
         <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
@@ -23,42 +23,29 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
       </div>
       <div class="panel-body">
-        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-attribute" class="form-horizontal">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-organization" class="form-horizontal">
           <div class="form-group required">
-            <label class="col-sm-2 control-label">{{ entry_name }}</label>
+            <label class="col-sm-2 control-label" for="input-id">ID категории</label>
             <div class="col-sm-10">
-              {% for language in languages %}
-              <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
-                <input type="text" name="attribute_description[{{ language.language_id }}][name]" value="{{ attribute_description[language.language_id] ? attribute_description[language.language_id].name }}" placeholder="{{ entry_name }}" class="form-control" />
-              </div>
-              {% if error_name[language.language_id] %}
-              <div class="text-danger">{{ error_name[language.language_id] }}</div>
-              {% endif %}
-              {% endfor %}
+              <input type="text" name="cat_id" value="{{ organization_cat_id }}" placeholder="ID категории" id="input-id" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-name">Название организации</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ organization_name }}" placeholder="Название организации" id="input-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-alias">Алиас организации</label>
+            <div class="col-sm-10">
+              <input type="text" name="alias" value="{{ organization_alias }}" placeholder="Аляс организации" id="input-alias" class="form-control" />
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-attribute-group">{{ entry_attribute_group }}</label>
+            <label class="col-sm-2 control-label" for="input-description">Описание организации</label>
             <div class="col-sm-10">
-              <select name="attribute_group_id" id="input-attribute-group" class="form-control">
-                <option value="0"></option>
-                {% for attribute_group in attribute_groups %}
-                {% if attribute_group.attribute_group_id == attribute_group_id %}
-                <option value="{{ attribute_group.attribute_group_id }}" selected="selected">{{ attribute_group.name }}</option>
-                {% else %}
-                <option value="{{ attribute_group.attribute_group_id }}">{{ attribute_group.name }}</option>
-                {% endif %}
-                {% endfor %}
-              </select>
-              {% if error_attribute_group %}
-              <div class="text-danger">{{ error_attribute_group }}</div>
-              {% endif %}
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
-            <div class="col-sm-10">
-              <input type="text" name="sort_order" value="{{ sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
+              <input type="text" name="intro_desc" value="{{ organization_intro_desc }}" placeholder="Описание организации" id="input-description" class="form-control" />
             </div>
           </div>
         </form>
