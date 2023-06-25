@@ -26,6 +26,9 @@ class ControllerCatalogOrganization extends Controller
 	 */
 	public function add()
 	{
+		$this->document->setTitle('Список организаций');
+
+		$this->load->model('catalog/organization');
 	}
 
 	/**
