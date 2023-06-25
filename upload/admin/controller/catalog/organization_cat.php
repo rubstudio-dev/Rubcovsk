@@ -22,8 +22,22 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 	}
 
+	/**
+	 * Редактирование категории
+	 *
+	 * @return void
+	 */
 	public function edit()
 	{
+		$this->document->setTitle('Категории организаций');
+
+		$this->load->model('catalog/organization_cat');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
+		}
+
+		$this->getForm();
 	}
 
 	/**
@@ -215,8 +229,18 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 	}
 
+	/**
+	 * Проверка прав для формы (Создание / Редактирование)
+	 *
+	 * @return bool
+	 */
 	protected function validateForm()
 	{
+		if (!$this->user->hasPermission('modify', 'catalog/organization_cat')) {
+			$this->error['warning'] = 'Недостаточно прав!';
+		}
+
+		return !$this->error;
 	}
 
 	/**
