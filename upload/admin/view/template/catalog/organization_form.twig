@@ -27,19 +27,19 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-id">ID категории</label>
             <div class="col-sm-10">
-              <input type="text" name="cat_id" value="{{ organization_cat_id }}" placeholder="ID категории" id="input-id" class="form-control" />
+              <input type="number" name="cat_id" value="{{ organization_cat_id }}" required placeholder="ID категории" id="input-id" class="form-control" />
             </div>
           </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-name">Название организации</label>
             <div class="col-sm-10">
-              <input type="text" name="name" value="{{ organization_name }}" placeholder="Название организации" id="input-name" class="form-control" />
+              <input type="text" name="name" value="{{ organization_name }}" required placeholder="Название организации" id="input-name" class="form-control" />
             </div>
           </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-alias">Алиас организации</label>
             <div class="col-sm-10">
-              <input type="text" name="alias" value="{{ organization_alias }}" placeholder="Аляс организации" id="input-alias" class="form-control" />
+              <input type="text" name="alias" value="{{ organization_alias }}" required placeholder="Аляс организации" id="input-alias" class="form-control" />
             </div>
           </div>
           <div class="form-group">

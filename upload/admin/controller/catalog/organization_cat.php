@@ -18,6 +18,11 @@ class ControllerCatalogOrganizationCat extends Controller
 		$this->getList();
 	}
 
+	/**
+	 * Добавление категории
+	 *
+	 * @return void
+	 */
 	public function add()
 	{
 	}
