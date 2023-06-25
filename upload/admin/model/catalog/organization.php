@@ -11,8 +11,16 @@ class ModelCatalogOrganization extends Model
 	{
 	}
 
+	/**
+	 * Редактирование организации
+	 *
+	 * @param $organization_id
+	 * @param $data
+	 * @return void
+	 */
 	public function editOrganization($organization_id, $data)
 	{
+		$this->db->query("UPDATE " . DB_PREFIX . "org_items SET cat_id = '" . (int)$data['cat_id'] . "', name = '" . (string)$data['name'] . "', alias = '" . (string)$data['alias'] . "', intro_desc = '" . (string)$data['intro_desc'] . "' WHERE id = '" . (int)$organization_id . "'");
 	}
 
 	/**
