@@ -116,6 +116,21 @@ class ModelCatalogOrganizationCat extends Model
 	}
 
 	/**
+	 * Проверяет есть ли категория
+	 *
+	 * @param $cat_id
+	 * @return bool
+	 */
+	public function checkCategoryExists($cat_id)
+	{
+		if ($this->db->query("SELECT id FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id")) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Общее число категорий
 	 *
 	 * @return mixed

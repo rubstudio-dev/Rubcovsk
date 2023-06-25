@@ -29,6 +29,7 @@ class ControllerCatalogOrganization extends Controller
 		$this->document->setTitle('Список организаций');
 
 		$this->load->model('catalog/organization');
+		$this->load->model('catalog/organization_cat');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
 			$this->model_catalog_organization->addOrganization($this->request->post);
@@ -65,6 +66,7 @@ class ControllerCatalogOrganization extends Controller
 		$this->document->setTitle('Список организаций');
 
 		$this->load->model('catalog/organization');
+		$this->load->model('catalog/organization_cat');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
 			$this->model_catalog_organization->editOrganization($this->request->get['id'], $this->request->post);
