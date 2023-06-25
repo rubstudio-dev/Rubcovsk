@@ -28,6 +28,30 @@ class ControllerCatalogOrganizationCat extends Controller
 		$this->document->setTitle('Категории организаций');
 
 		$this->load->model('catalog/organization_cat');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
+			$this->model_catalog_organization_cat->addOrganizationCat($this->request->post);
+
+			$this->session->data['success'] = 'Вы успешно создали категорию';
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . $url, true));
+		}
+
+		$this->getForm();
 	}
 
 	/**
