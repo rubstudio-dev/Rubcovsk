@@ -309,6 +309,12 @@ class ControllerCatalogOrganization extends Controller
 		if (isset($this->request->get['id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$organization_info = $this->model_catalog_organization->getOrganization($this->request->get['id']);
 		}
+
+		$data['header'] = $this->load->controller('common/header');
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['footer'] = $this->load->controller('common/footer');
+
+		$this->response->setOutput($this->load->view('catalog/organization_form', $data));
 	}
 
 	/**
