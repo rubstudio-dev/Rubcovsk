@@ -254,23 +254,11 @@ class ControllerCatalogOrganization extends Controller
 	{
 		$data['text_form'] = !isset($this->request->get['id']) ? 'Создание организации' : 'Редактирование организации';
 
+		$data['error_warning'] = '';
+
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
 		}
-
-		/*if (isset($this->error['name'])) {
-			$data['error_name'] = $this->error['name'];
-		} else {
-			$data['error_name'] = array();
-		}
-
-		if (isset($this->error['attribute_group'])) {
-			$data['error_attribute_group'] = $this->error['attribute_group'];
-		} else {
-			$data['error_attribute_group'] = '';
-		}*/
 
 		$url = '';
 
@@ -319,9 +307,9 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		if (isset($this->request->post['name'])) {
-			$data['organization_name'] = $this->request->post['name'];
+			$data['organization_name'] = htmlspecialchars($this->request->post['name']);
 		} elseif (!empty($organization_info)) {
-			$data['organization_name'] = $organization_info['name'];
+			$data['organization_name'] = htmlspecialchars($organization_info['name']);
 		} else {
 			$data['organization_name'] = '';
 		}
