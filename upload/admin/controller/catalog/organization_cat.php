@@ -29,7 +29,7 @@ class ControllerCatalogOrganizationCat extends Controller
 
 		$this->load->model('catalog/organization_cat');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission() && $this->checkForm()) {
 			$this->model_catalog_organization_cat->addOrganizationCat($this->request->post);
 
 			$this->session->data['success'] = 'Вы успешно создали категорию';
@@ -65,7 +65,7 @@ class ControllerCatalogOrganizationCat extends Controller
 
 		$this->load->model('catalog/organization_cat');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission() && $this->checkForm()) {
 			$this->model_catalog_organization_cat->editOrganizationCat($this->request->get['id'], $this->request->post);
 
 			$this->session->data['success'] = 'Вы успешно отредактировали категорию';
@@ -289,6 +289,9 @@ class ControllerCatalogOrganizationCat extends Controller
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		}
+		if (isset($this->error['required_fields'])) {
+			$data['error_warning'] = $this->error['required_fields'];
+		}
 
 		$url = '';
 
@@ -368,6 +371,20 @@ class ControllerCatalogOrganizationCat extends Controller
 	{
 		if (!$this->user->hasPermission('modify', 'catalog/organization_cat')) {
 			$this->error['warning'] = 'Недостаточно прав!';
+		}
+
+		return !$this->error;
+	}
+
+	/**
+	 * Проверка формы (Создание / Редактирование)
+	 *
+	 * @return bool
+	 */
+	protected function checkForm()
+	{
+		if (!$this->request->post['name'] || !$this->request->post['alias']) {
+			$this->error['required_fields'] = 'Заполните обязательные поля!';
 		}
 
 		return !$this->error;

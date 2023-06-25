@@ -31,7 +31,7 @@ class ControllerCatalogOrganization extends Controller
 		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission() && $this->checkForm()) {
 			$this->model_catalog_organization->addOrganization($this->request->post);
 
 			$this->session->data['success'] = 'Вы успешно создали организацию';
@@ -68,7 +68,7 @@ class ControllerCatalogOrganization extends Controller
 		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->checkPermission() && $this->checkForm()) {
 			$this->model_catalog_organization->editOrganization($this->request->get['id'], $this->request->post);
 
 			$this->session->data['success'] = 'Вы успешно отредактировали организацию';
@@ -293,6 +293,12 @@ class ControllerCatalogOrganization extends Controller
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		}
+		if (isset($this->error['required_fields'])) {
+			$data['error_warning'] = $this->error['required_fields'];
+		}
+		if (isset($this->error['unknown_cat_id'])) {
+			$data['error_warning'] = $this->error['unknown_cat_id'];
+		}
 
 		$url = '';
 
@@ -380,6 +386,24 @@ class ControllerCatalogOrganization extends Controller
 	{
 		if (!$this->user->hasPermission('modify', 'catalog/organization')) {
 			$this->error['warning'] = 'Недостаточно прав!';
+		}
+
+		return !$this->error;
+	}
+
+	/**
+	 * Проверка формы (Создание / Редактирование)
+	 *
+	 * @return bool
+	 */
+	protected function checkForm()
+	{
+		if (!$this->request->post['cat_id'] || !$this->request->post['name'] || !$this->request->post['alias']) {
+			$this->error['required_fields'] = 'Заполните обязательные поля!';
+		}
+
+		if (!$this->model_catalog_organization_cat->getCatNameById($this->request->post['cat_id'])) {
+			$this->error['unknown_cat_id'] = 'Категория не существует!';
 		}
 
 		return !$this->error;
