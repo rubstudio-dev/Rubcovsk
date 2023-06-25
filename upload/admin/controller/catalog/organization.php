@@ -305,6 +305,10 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		$data['cancel'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . $url, true);
+
+		if (isset($this->request->get['id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$organization_info = $this->model_catalog_organization->getOrganization($this->request->get['id']);
+		}
 	}
 
 	/**
