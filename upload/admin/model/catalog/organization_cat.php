@@ -112,7 +112,7 @@ class ModelCatalogOrganizationCat extends Model
 	{
 		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
 
-		return $query->row['name'];
+		return $query->row['name'] ?? false;
 	}
 
 	/**
