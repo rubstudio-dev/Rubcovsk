@@ -295,6 +295,14 @@ class ControllerCatalogOrganizationCat extends Controller
 			'text' => 'Категории организаций',
 			'href' => $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
+
+		if (!isset($this->request->get['id'])) {
+			$data['action'] = $this->url->link('catalog/organization_cat/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		} else {
+			$data['action'] = $this->url->link('catalog/organization_cat/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $this->request->get['id'] . $url, true);
+		}
+
+		$data['cancel'] = $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . $url, true);
 	}
 
 	/**

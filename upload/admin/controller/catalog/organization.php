@@ -297,6 +297,14 @@ class ControllerCatalogOrganization extends Controller
 			'text' => 'Список организаций',
 			'href' => $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
+
+		if (!isset($this->request->get['id'])) {
+			$data['action'] = $this->url->link('catalog/organization/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		} else {
+			$data['action'] = $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $this->request->get['id'] . $url, true);
+		}
+
+		$data['cancel'] = $this->url->link('catalog/organization', 'user_token=' . $this->session->data['user_token'] . $url, true);
 	}
 
 	/**
