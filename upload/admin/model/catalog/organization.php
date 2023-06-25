@@ -7,8 +7,19 @@
 
 class ModelCatalogOrganization extends Model
 {
+	/**
+	 * Создание организации
+	 *
+	 * @param $data
+	 * @return mixed
+	 */
 	public function addOrganization($data)
 	{
+		$organization_id = $this->db->getLastId();
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "org_items SET id = '" . (int)$organization_id . "', cat_id = '" . (int)$data['cat_id'] . "', name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', intro_desc = '" . $this->db->escape($data['intro_desc']) . "'");
+
+		return $organization_id;
 	}
 
 	/**
@@ -20,7 +31,7 @@ class ModelCatalogOrganization extends Model
 	 */
 	public function editOrganization($organization_id, $data)
 	{
-		$this->db->query("UPDATE " . DB_PREFIX . "org_items SET cat_id = '" . (int)$data['cat_id'] . "', name = '" . (string)$data['name'] . "', alias = '" . (string)$data['alias'] . "', intro_desc = '" . (string)$data['intro_desc'] . "' WHERE id = '" . (int)$organization_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "org_items SET cat_id = '" . (int)$data['cat_id'] . "', name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', intro_desc = '" . $this->db->escape($data['intro_desc']) . "' WHERE id = '" . (int)$organization_id . "'");
 	}
 
 	/**

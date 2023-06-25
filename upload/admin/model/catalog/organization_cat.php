@@ -7,8 +7,19 @@
 
 class ModelCatalogOrganizationCat extends Model
 {
+	/**
+	 * Создание категории
+	 *
+	 * @param $data
+	 * @return mixed
+	 */
 	public function addOrganizationCat($data)
 	{
+		$cat_id = $this->db->getLastId();
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "org_categories SET id = '" . (int)$cat_id . "', name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "'");
+
+		return $cat_id;
 	}
 
 	/**
@@ -20,7 +31,7 @@ class ModelCatalogOrganizationCat extends Model
 	 */
 	public function editOrganizationCat($organization_cat_id, $data)
 	{
-		$this->db->query("UPDATE " . DB_PREFIX . "org_categories SET name = '" . (string)$data['name'] . "', alias = '" . (string)$data['alias'] . "', description = '" . (string)$data['description'] . "' WHERE id = '" . (int)$organization_cat_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "org_categories SET name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "' WHERE id = '" . (int)$organization_cat_id . "'");
 	}
 
 	/**
