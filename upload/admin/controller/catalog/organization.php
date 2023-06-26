@@ -358,9 +358,9 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		if (isset($this->request->post['name'])) {
-			$data['organization_name'] = htmlspecialchars($this->request->post['name']);
+			$data['organization_name'] = htmlentities(html_entity_decode($this->request->post['name']));
 		} elseif (!empty($organization_info)) {
-			$data['organization_name'] = htmlspecialchars($organization_info['name']);
+			$data['organization_name'] = htmlentities(html_entity_decode($organization_info['name']));
 		} else {
 			$data['organization_name'] = '';
 		}
@@ -374,9 +374,9 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		if (isset($this->request->post['intro_desc'])) {
-			$data['organization_intro_desc'] = htmlspecialchars($this->request->post['intro_desc']);
+			$data['organization_intro_desc'] = htmlentities(html_entity_decode($this->request->post['intro_desc']));
 		} elseif (!empty($organization_info)) {
-			$data['organization_intro_desc'] = htmlspecialchars($organization_info['intro_desc']);
+			$data['organization_intro_desc'] = htmlentities(html_entity_decode($organization_info['intro_desc']));
 		} else {
 			$data['organization_intro_desc'] = '';
 		}
