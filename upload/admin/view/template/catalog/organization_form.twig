@@ -28,7 +28,7 @@
             <label class="col-sm-2 control-label" for="input-cat-select">Выбор категории</label>
             <div class="col-sm-10">
               <select name="cat_id" id="input-cat-select" class="form-control">
-                <option value="0"></option>
+                <option value="0">Выберите категорию</option>
                 {% for category in categories %}
                   {% if category.id == organization_cat_id %}
                     <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>

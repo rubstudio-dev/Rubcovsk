@@ -410,7 +410,7 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		if (!$this->model_catalog_organization_cat->getCatNameById($this->request->post['cat_id'])) {
-			$this->error['unknown_cat_id'] = 'Категория не существует!';
+			$this->error['unknown_cat_id'] = 'Выбранная вами категория не существует!';
 		}
 
 		return !$this->error;
