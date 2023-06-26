@@ -344,9 +344,9 @@ class ControllerCatalogOrganizationCat extends Controller
 		}
 
 		if (isset($this->request->post['name'])) {
-			$data['cat_name'] = htmlentities(html_entity_decode($this->request->post['name']);
+			$data['cat_name'] = htmlentities(html_entity_decode($this->request->post['name']));
 		} elseif (!empty($organization_cat_info)) {
-			$data['cat_name'] = htmlentities(html_entity_decode($organization_cat_info['name']);
+			$data['cat_name'] = htmlentities(html_entity_decode($organization_cat_info['name']));
 		} else {
 			$data['cat_name'] = '';
 		}
