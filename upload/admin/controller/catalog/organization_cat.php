@@ -205,9 +205,9 @@ class ControllerCatalogOrganizationCat extends Controller
 		$results = $this->model_catalog_organization_cat->getOrganizationsCats($filter_data);
 
 		foreach ($results as $result) {
-			if (!$parent_name = $this->model_catalog_organization_cat->getParentCatById($result['parent_id'])) {
-				$parent_cat = 'Не указана';
-			} else {
+			$parent_cat = '';
+
+			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($result['parent_id'])) {
 				$parent_cat = $result['parent_id'] . '&nbsp;' . '(' . $parent_name . ')';
 			}
 
