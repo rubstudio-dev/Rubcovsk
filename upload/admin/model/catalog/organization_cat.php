@@ -118,29 +118,14 @@ class ModelCatalogOrganizationCat extends Model
 	/**
 	 * Получаем название родительской категории по id
 	 *
-	 * @param $cat_id
+	 * @param $cat_parent_id
 	 * @return false|mixed
 	 */
-	public function getParentCatById($cat_id)
+	public function getParentCatById($cat_parent_id)
 	{
-		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_parent_id");
 
 		return $query->row['name'] ?? false;
-	}
-
-	/**
-	 * Проверяет есть ли категория
-	 *
-	 * @param $cat_id
-	 * @return bool
-	 */
-	public function checkCategoryExists($cat_id)
-	{
-		if ($this->db->query("SELECT id FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id")) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
