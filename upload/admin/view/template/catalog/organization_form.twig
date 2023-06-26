@@ -25,9 +25,18 @@
       <div class="panel-body">
         <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-organization" class="form-horizontal">
           <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-id">ID категории</label>
+            <label class="col-sm-2 control-label" for="input-cat-select">Выбор категории</label>
             <div class="col-sm-10">
-              <input type="number" name="cat_id" value="{{ organization_cat_id }}" required placeholder="ID категории" id="input-id" class="form-control" />
+              <select name="cat_id" id="input-cat-select" class="form-control">
+                <option value="0"></option>
+                {% for category in categories %}
+                  {% if category.id == organization_cat_id %}
+                    <option value="{{ category.id }}" selected="selected">{{ category.name }}</option>
+                  {% else %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="form-group required">

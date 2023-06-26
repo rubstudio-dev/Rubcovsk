@@ -9,6 +9,11 @@ class ControllerCatalogOrganizationCat extends Controller
 {
 	private $error = array();
 
+	/**
+	 * Отображение списка категорий
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 		$this->document->setTitle('Категории организаций');
@@ -388,9 +393,5 @@ class ControllerCatalogOrganizationCat extends Controller
 		}
 
 		return !$this->error;
-	}
-
-	public function autocomplete()
-	{
 	}
 }

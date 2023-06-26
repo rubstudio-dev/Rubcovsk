@@ -9,6 +9,11 @@ class ControllerCatalogOrganization extends Controller
 {
 	private $error = array();
 
+	/**
+	 * Отображение списка организаций
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 		$this->document->setTitle('Список организаций');
@@ -370,6 +375,8 @@ class ControllerCatalogOrganization extends Controller
 			$data['organization_intro_desc'] = '';
 		}
 
+		$data['categories'] = $this->model_catalog_organization_cat->getOrganizationsCats();
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -407,9 +414,5 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		return !$this->error;
-	}
-
-	public function autocomplete()
-	{
 	}
 }
