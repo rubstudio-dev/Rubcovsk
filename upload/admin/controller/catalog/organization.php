@@ -368,9 +368,9 @@ class ControllerCatalogOrganization extends Controller
 		}
 
 		if (isset($this->request->post['intro_desc'])) {
-			$data['organization_intro_desc'] = $this->request->post['intro_desc'];
+			$data['organization_intro_desc'] = htmlspecialchars($this->request->post['intro_desc']);
 		} elseif (!empty($organization_info)) {
-			$data['organization_intro_desc'] = $organization_info['intro_desc'];
+			$data['organization_intro_desc'] = htmlspecialchars($organization_info['intro_desc']);
 		} else {
 			$data['organization_intro_desc'] = '';
 		}
