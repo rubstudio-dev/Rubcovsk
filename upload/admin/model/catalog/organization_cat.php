@@ -106,9 +106,22 @@ class ModelCatalogOrganizationCat extends Model
 	 * Получаем название категории по id
 	 *
 	 * @param $cat_id
-	 * @return mixed
+	 * @return false|mixed
 	 */
 	public function getCatNameById($cat_id)
+	{
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
+
+		return $query->row['name'] ?? false;
+	}
+
+	/**
+	 * Получаем название родительской категории по id
+	 *
+	 * @param $cat_id
+	 * @return false|mixed
+	 */
+	public function getParentCatById($cat_id)
 	{
 		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "org_categories WHERE id = $cat_id");
 

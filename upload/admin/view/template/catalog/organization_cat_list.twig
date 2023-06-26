@@ -45,6 +45,7 @@
                     {% else %}
                     <a href="{{ sort_name }}">Название</a>
                     {% endif %}</td>
+                  <td class="text-left">Родительская категория</td>
                   <td class="text-left">Алиас</td>
                   <td class="text-left">Описание</td>
                   <td class="text-right">Действие</td>
@@ -61,6 +62,7 @@
                     {% endif %}</td>
                   <td class="text-left">{{ organization_cat.id }}</td>
                   <td class="text-left">{{ organization_cat.name }}</td>
+                  <td class="text-left">{{ organization_cat.parent }}</td>
                   <td class="text-left">{{ organization_cat.alias }}</td>
                   <td class="text-left">{{ organization_cat.desc }}</td>
                   <td class="text-right">
