@@ -351,6 +351,14 @@ class ControllerCatalogOrganizationCat extends Controller
 			$data['cat_name'] = '';
 		}
 
+		if (isset($this->request->post['parent_id'])) {
+			$data['cat_parent_id'] = $this->request->post['parent_id'];
+		} elseif (!empty($organization_cat_info)) {
+			$data['cat_parent_id'] = $organization_cat_info['parent_id'];
+		} else {
+			$data['cat_parent_id'] = '';
+		}
+
 		if (isset($this->request->post['alias'])) {
 			$data['cat_alias'] = $this->request->post['alias'];
 		} elseif (!empty($organization_cat_info)) {
@@ -366,6 +374,8 @@ class ControllerCatalogOrganizationCat extends Controller
 		} else {
 			$data['cat_description'] = '';
 		}
+
+		$data['parent_categories'] = $this->model_catalog_organization_cat->getOrganizationsCats();
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

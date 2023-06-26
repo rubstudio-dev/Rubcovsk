@@ -37,6 +37,21 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cat-parent-select">Выбор родительской категории</label>
+            <div class="col-sm-10">
+              <select name="parent_id" id="input-cat-parent-select" class="form-control">
+                <option value="0">-- Выберите родительскую категорию --</option>
+                {% for parent in parent_categories %}
+                  {% if parent.id == cat_parent_id %}
+                    <option value="{{ parent.id }}" selected="selected">{{ parent.name }}</option>
+                  {% else %}
+                    <option value="{{ parent.id }}">{{ parent.name }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-2 control-label" for="input-description">Описание категории</label>
             <div class="col-sm-10">
               <input type="text" name="description" value="{{ cat_description }}" placeholder="Описание категории" id="input-description" class="form-control" />
