@@ -208,12 +208,18 @@ class ControllerCatalogOrganization extends Controller
 		$results = $this->model_catalog_organization->getOrganizations($filter_data);
 
 		foreach ($results as $result) {
+			$cat_id = '';
+
+			if ($cat_name = $this->model_catalog_organization_cat->getCatNameById($result['cat_id'])) {
+				$cat_id = $result['cat_id'] . '&nbsp;' . '(' . $cat_name . ')';
+			}
+
 			$data['organizations'][] = array(
 				'id' => $result['id'],
 				'name' => $result['name'],
 				'alias' => $result['alias'],
 				'desc' => $result['intro_desc'],
-				'cat_id' => $result['cat_id'] . '&nbsp;' . '(' . $this->model_catalog_organization_cat->getCatNameById($result['cat_id']) . ')',
+				'cat_id' => $cat_id,
 				'delete' => $this->url->link('catalog/organization/delete', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true),
 				'edit' => $this->url->link('catalog/organization/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
 			);
