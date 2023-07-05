@@ -1,6 +1,9 @@
 <?php
-class ControllerCommonFooter extends Controller {
-	public function index() {
+
+class ControllerCommonFooter extends Controller
+{
+	public function index()
+	{
 		$this->load->language('common/footer');
 
 		$this->load->model('catalog/information');
@@ -11,7 +14,7 @@ class ControllerCommonFooter extends Controller {
 			if ($result['bottom']) {
 				$data['informations'][] = array(
 					'title' => $result['title'],
-					'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+					'href' => $this->url->link('information/information', 'information_id=' . $result['information_id'])
 				);
 			}
 		}
@@ -58,7 +61,7 @@ class ControllerCommonFooter extends Controller {
 
 		$data['scripts'] = $this->document->getScripts('footer');
 		$data['styles'] = $this->document->getStyles('footer');
-		
+
 		return $this->load->view('common/footer', $data);
 	}
 }
