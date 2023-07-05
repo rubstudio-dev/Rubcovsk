@@ -10,28 +10,11 @@
             {% set class = '' %}
         {% endif %}
         <div id="content" class="{{ class }}">
-            <div class="position-absolute m-2 z-1">
-                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </button>
-                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
-                    <ion-icon name="search"></ion-icon>
-                </button>
-                <button type="button" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
-                    <ion-icon name="person-circle"></ion-icon>
-                </button>
-
-                <div class="bg-light text-muted fs-5 rounded-5 mt-3 p-2 text-center">
-                    Температура: <span id="temp"></span><br>
-                    Ощущается как: <span id="feels_like"></span><br>
-                    Влажность: <span id="humidity"></span><br>
-                    Иконка: <img alt="Погода" height="50" width="50" id="weather_icon"><br>
-                    Название погоды: <span id="weather_name"></span><br>
-                    Описание погоды: <span id="weather_desc"></span>
-                </div>
+            <div class="main-container">
+                <div class="z-0 bg-light"></div>
+                <div class="z-0" id="map"></div>
             </div>
 
-            <div class="min-vh-100 z-0" id="map"></div>
             <script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RyaWtlcnVzIiwiYSI6ImNqcHhxYnR5YjBvaWg0NHRkc2g0NnNtanAifQ.3549JQDbk8rr2Vx4qhDYxA';
                 const map = new mapboxgl.Map({
