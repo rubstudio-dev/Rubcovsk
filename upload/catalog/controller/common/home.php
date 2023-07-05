@@ -12,6 +12,25 @@ class ControllerCommonHome extends Controller
 			$this->document->addLink($this->config->get('config_url'), 'canonical');
 		}
 
+		// ==== [Начало] Дубль данных с header.php ====
+		// Адрес сайта
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
+
+		// Название сайта
+		$data['name'] = $this->config->get('config_name');
+
+		// Лого сайта
+		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+		} else {
+			$data['logo'] = '';
+		}
+		// ==== [Конец] Дубль данных с header.php ====
+
 		/**
 		 * ========= Не используется =========
 		 *
