@@ -31,6 +31,9 @@ class ControllerCommonHome extends Controller
 		}
 		// ==== [Конец] Дубль данных с header.php ====
 
+		// Получаем список организаций для вывода в меню
+		$data['organizations'] = $this->getOrganizations();
+
 		/**
 		 * ========= Не используется =========
 		 *
@@ -44,5 +47,31 @@ class ControllerCommonHome extends Controller
 		$data['header'] = $this->load->controller('common/header');
 
 		$this->response->setOutput($this->load->view('common/home', $data));
+	}
+
+	/**
+	 * Возвращает список организаций
+	 *
+	 * @return array
+	 */
+	public function getOrganizations()
+	{
+		$this->load->model('catalog/organization');
+		$this->load->model('catalog/organization_cat');
+
+		$arrayOrganizations = array();
+		$organizations = $this->model_catalog_organization->getOrganizations();
+
+		foreach ($organizations as $result) {
+			$arrayOrganizations[] = array(
+				'id' => $result['id'],
+				'name' => $result['name'],
+				'alias' => $result['alias'],
+				'desc' => $result['intro_desc'],
+				'category' => $this->model_catalog_organization_cat->getCatNameById($result['cat_id'])
+			);
+		}
+
+		return $arrayOrganizations;
 	}
 }
