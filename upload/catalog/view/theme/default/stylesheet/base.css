@@ -1,7 +1,3 @@
-.lh-tight {
-    line-height: 1.25;
-}
-
 .main-container {
     display: grid;
     grid-template-columns: 25% 75%;
