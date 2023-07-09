@@ -33,6 +33,7 @@ class ControllerCommonHome extends Controller
 
 		// Получаем список организаций для вывода в меню
 		$data['organizations'] = $this->getOrganizations();
+		$data['cat_organizations'] = $this->getCatOrganizations();
 
 		/**
 		 * ========= Не используется =========
@@ -54,7 +55,7 @@ class ControllerCommonHome extends Controller
 	 *
 	 * @return array
 	 */
-	public function getOrganizations()
+	private function getOrganizations()
 	{
 		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
@@ -73,5 +74,36 @@ class ControllerCommonHome extends Controller
 		}
 
 		return $arrayOrganizations;
+	}
+
+	/**
+	 * Возвращает список категорий организаций
+	 *
+	 * @return array
+	 */
+	private function getCatOrganizations()
+	{
+		$this->load->model('catalog/organization_cat');
+
+		$arrayCats = array();
+		$cats = $this->model_catalog_organization_cat->getOrganizationsCats();
+
+		foreach ($cats as $result) {
+			$parent_cat = null;
+
+			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($result['parent_id'])) {
+				$parent_cat = $result['parent_id'] . '&nbsp;' . '(' . $parent_name . ')';
+			}
+
+			$arrayCats[] = array(
+				'id' => $result['id'],
+				'name' => $result['name'],
+				'parent' => $parent_cat,
+				'alias' => $result['alias'],
+				'desc' => $result['description'],
+			);
+		}
+
+		return $arrayCats;
 	}
 }
