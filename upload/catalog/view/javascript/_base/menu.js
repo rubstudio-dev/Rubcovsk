@@ -1,22 +1,27 @@
-new Mmenu(document.querySelector("#menu"), {
-    // Счётчик
-    "counters": {
-        "add": true
-    },
-    // Доп оверлеи
-    "navbars": [
-        {
-            "position": "top",
-            "content": [
-                "searchfield" // поиск
-            ]
+new Mmenu(
+    document.querySelector("#menu"),
+    {
+        // Счётчик
+        "counters": {
+            "add": true
         },
-        {
-            "position": "bottom",
-            "content": [
-                // контент снизу страницы
-                "Сделано с любовью ❤"
-            ]
-        }
-    ]
-});
+        // Навбары
+        "navbars": [
+            {
+                "position": "top",
+                "content": [
+                    "searchfield" // поиск
+                ]
+            },
+            {
+                "position": "bottom",
+                "content": [
+                    "Сделано с любовью ❤" // контент снизу страницы
+                ]
+            }
+        ]
+    },
+    {
+        "language": "ru" // локаль
+    }
+);
