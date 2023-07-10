@@ -8,60 +8,16 @@
 class ModelCatalogOrganization extends Model
 {
 	/**
-	 * Получаем информацию об организации по ID
+	 * Получаем информацию об всех организация по ID категории
 	 *
-	 * @param $organization_id
+	 * @param $cat_id
 	 * @return mixed
 	 */
-	public function getOrganization($organization_id)
+	public function getOrganizationsByCatID($cat_id)
 	{
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE id = '" . (int)$organization_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE cat_id = '" . (int)$cat_id . "'");
 
 		return $query->row;
-	}
-
-	/**
-	 * Возвращает список организаций
-	 *
-	 * @param $data
-	 * @return mixed
-	 */
-	public function getOrganizations($data = array())
-	{
-		$sql = "SELECT * FROM " . DB_PREFIX . "org_items";
-
-		$sort_data = array(
-			'name',
-			'cat_id'
-		);
-
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY cat_id, name";
-		}
-
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
-		}
-
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}
-
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}
-
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-		}
-
-		$query = $this->db->query($sql);
-
-		return $query->rows;
 	}
 
 	/**

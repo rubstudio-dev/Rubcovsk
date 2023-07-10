@@ -31,9 +31,14 @@ class ControllerCommonHome extends Controller
 		}
 		// ==== [Конец] Дубль данных с header.php ====
 
-		// Получаем список организаций для вывода в меню
-		$data['organizations'] = $this->getOrganizations();
-		$data['cat_organizations'] = $this->getCatOrganizations();
+		/**
+		 * Отображаем меню
+		 *
+		 * Пример:
+		 * {{ menu.cat.id }} - ID категории
+		 * {{ menu.org.id }} - ID организации в этой категории
+		 */
+		$data['menu'] = $this->getMenu();
 
 		/**
 		 * ========= Не используется =========
@@ -51,60 +56,40 @@ class ControllerCommonHome extends Controller
 	}
 
 	/**
-	 * Возвращает список организаций
+	 * Отображения контента меню
 	 *
 	 * @return array
 	 */
-	private function getOrganizations()
+	private function getMenu()
 	{
 		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
 
-		$arrayOrganizations = array();
-		$organizations = $this->model_catalog_organization->getOrganizations();
+		$arrayData = array();
+		$categories = $this->model_catalog_organization_cat->getOrganizationsCats();
 
-		foreach ($organizations as $result) {
-			$arrayOrganizations[] = array(
-				'id' => $result['id'],
-				'cat_id' => $result['cat_id'],
-				'name' => $result['name'],
-				'alias' => $result['alias'],
-				'desc' => $result['intro_desc'],
-				'category' => $this->model_catalog_organization_cat->getCatNameById($result['cat_id'])
-			);
-		}
+		foreach ($categories as $category) {
+			$parent_cat = false;
 
-		return $arrayOrganizations;
-	}
-
-	/**
-	 * Возвращает список категорий организаций
-	 *
-	 * @return array
-	 */
-	private function getCatOrganizations()
-	{
-		$this->load->model('catalog/organization_cat');
-
-		$arrayCats = array();
-		$cats = $this->model_catalog_organization_cat->getOrganizationsCats();
-
-		foreach ($cats as $result) {
-			$parent_cat = null;
-
-			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($result['parent_id'])) {
-				$parent_cat = $result['parent_id'] . '&nbsp;' . '(' . $parent_name . ')';
+			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($category['parent_id'])) {
+				$parent_cat = $parent_name;
 			}
 
-			$arrayCats[] = array(
-				'id' => $result['id'],
-				'name' => $result['name'],
-				'parent' => $parent_cat,
-				'alias' => $result['alias'],
-				'desc' => $result['description'],
+			$organizations = $this->model_catalog_organization->getOrganizationsByCatID($category['id']);
+
+			$arrayData[] = array(
+				'cat' => array(
+					'id' => $category['id'],
+					'name' => $category['name'],
+					'parent' => $parent_cat,
+					'alias' => $category['alias'],
+					'desc' => $category['description'],
+					// Организации внутри категории (массив)
+					'org' => $organizations
+				)
 			);
 		}
 
-		return $arrayCats;
+		return $arrayData;
 	}
 }
