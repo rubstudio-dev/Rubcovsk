@@ -66,6 +66,7 @@ class ControllerCommonHome extends Controller
 		foreach ($organizations as $result) {
 			$arrayOrganizations[] = array(
 				'id' => $result['id'],
+				'cat_id' => $result['cat_id'],
 				'name' => $result['name'],
 				'alias' => $result['alias'],
 				'desc' => $result['intro_desc'],
