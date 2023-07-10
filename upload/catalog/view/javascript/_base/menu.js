@@ -1,0 +1,1 @@
+new Mmenu(document.querySelector("#menu"));

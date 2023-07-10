@@ -1,3 +1,9 @@
+nav:not(.mm-menu) {
+    display: none;
+}
+
+.menu-block {
+}
+
 #menu {
-    height: 100vh;
 }

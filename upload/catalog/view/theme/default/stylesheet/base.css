@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 ::-moz-selection,
 ::selection {
     color: white;
@@ -6,11 +10,7 @@
 
 .main-container {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: auto 100%;
     justify-items: stretch;
     align-items: stretch;
-}
-
-.main-container > div {
-    height: 100vh;
 }
