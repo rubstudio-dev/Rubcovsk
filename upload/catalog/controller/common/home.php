@@ -35,8 +35,8 @@ class ControllerCommonHome extends Controller
 		 * Отображаем меню
 		 *
 		 * Пример:
-		 * {{ menu.cat.id }} - ID категории
-		 * {{ menu.org.id }} - ID организации в этой категории
+		 * ~ {{ menu }} - категория
+		 * ~ {{ menu.org }} - организации внутри категории
 		 */
 		$data['menu'] = $this->getMenu();
 
@@ -60,7 +60,7 @@ class ControllerCommonHome extends Controller
 	 *
 	 * @return array
 	 */
-	private function getMenu()
+	private function getMenu(): array
 	{
 		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
@@ -69,24 +69,14 @@ class ControllerCommonHome extends Controller
 		$categories = $this->model_catalog_organization_cat->getOrganizationsCats();
 
 		foreach ($categories as $category) {
-			$parent_cat = false;
-
-			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($category['parent_id'])) {
-				$parent_cat = $parent_name;
-			}
-
-			$organizations = $this->model_catalog_organization->getOrganizationsByCatID($category['id']);
-
 			$arrayData[] = array(
-				'cat' => array(
-					'id' => $category['id'],
-					'name' => $category['name'],
-					'parent' => $parent_cat,
-					'alias' => $category['alias'],
-					'desc' => $category['description'],
-					// Организации внутри категории (массив)
-					'org' => $organizations
-				)
+				'id' => $category['id'],
+				'name' => $category['name'],
+				'parent' => $this->model_catalog_organization_cat->getParentCatById($category['parent_id']) ?? false,
+				'alias' => $category['alias'],
+				'desc' => $category['description'],
+				// Организации внутри категории (массив, в противном случае false)
+				'org' => $this->model_catalog_organization->getOrganizationsByCatID($category['id']) ?? false
 			);
 		}
 

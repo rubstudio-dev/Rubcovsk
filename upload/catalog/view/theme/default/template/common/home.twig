@@ -17,19 +17,17 @@
                     </div>
                     <nav id="menu">
                         <ul>
-                            {% if cat_organizations %}
-                                {% for cat in cat_organizations %}
+                            {% if menu %}
+                                {% for cat in menu %}
                                     <li>
                                         <span>{{ cat.name }}</span>
                                         <ul>
-                                            {% if organizations %}
-                                                {% for organization in organizations %}
-                                                    {% if organization.cat_id == cat.id %}
-                                                        <li>
-                                                            <a href="#">{{ organization.name }}</a>
-                                                            <span>{{ organization.desc }}</span>
-                                                        </li>
-                                                    {% endif %}
+                                            {% if cat.org %}
+                                                {% for org in cat.org %}
+                                                    <li>
+                                                        <a href="#">{{ org.name }}</a>
+                                                        <span>{{ org.intro_desc }}</span>
+                                                    </li>
                                                 {% endfor %}
                                             {% else %}
                                                 <div class="m-3">

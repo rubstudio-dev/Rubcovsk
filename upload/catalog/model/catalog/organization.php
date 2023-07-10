@@ -17,7 +17,7 @@ class ModelCatalogOrganization extends Model
 	{
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE cat_id = '" . (int)$cat_id . "'");
 
-		return $query->row;
+		return $query->rows;
 	}
 
 	/**
