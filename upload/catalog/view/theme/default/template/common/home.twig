@@ -26,12 +26,12 @@
                                                 {% for child in cat.child %}
                                                     <li>
                                                         <a href="#">{{ child.name }}</a>
-                                                        <span>{{ child.intro_desc }}</span>
+                                                        <span>{{ child.description }}</span>
                                                     </li>
                                                 {% endfor %}
                                             {% else %}
                                                 <div class="m-3">
-                                                    <h5 class="text-muted text-center">Нету организаций! 😖</h5>
+                                                    <h5 class="text-muted text-center">Нету категорий! 😖</h5>
                                                 </div>
                                             {% endif %}
                                         </ul>
@@ -39,7 +39,7 @@
                                 {% endfor %}
                             {% else %}
                                 <div class="m-3">
-                                    <h5 class="text-muted text-center">Нету категорий! 😖</h5>
+                                    <h5 class="text-muted text-center">Нету родительских категорий! 😖</h5>
                                 </div>
                             {% endif %}
                         </ul>
