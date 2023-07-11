@@ -21,43 +21,28 @@ class ModelCatalogOrganizationCat extends Model
 	}
 
 	/**
-	 * Возвращает список категорий
+	 * Возвращает все родительские категории
 	 *
-	 * @param $data
 	 * @return mixed
 	 */
-	public function getOrganizationsCats($data = array())
+	public function getOrganizationParentCats(): mixed
 	{
-		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories";
+		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = 0";
 
-		$sort_data = array(
-			'name',
-			'id'
-		);
+		$query = $this->db->query($sql);
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY id, name";
-		}
+		return $query->rows;
+	}
 
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
-		}
-
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}
-
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}
-
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-		}
+	/**
+	 * Возвращает список доерних категории на основе ID родителя
+	 *
+	 * @param $parent_cat_id
+	 * @return mixed
+	 */
+	public function getOrganizationsCats($parent_cat_id): mixed
+	{
+		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = '" . (int)$parent_cat_id . "'";
 
 		$query = $this->db->query($sql);
 

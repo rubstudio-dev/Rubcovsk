@@ -22,11 +22,11 @@
                                     <li>
                                         <span>{{ cat.name }}</span>
                                         <ul>
-                                            {% if cat.org %}
-                                                {% for org in cat.org %}
+                                            {% if cat.child %}
+                                                {% for child in cat.child %}
                                                     <li>
-                                                        <a href="#">{{ org.name }}</a>
-                                                        <span>{{ org.intro_desc }}</span>
+                                                        <a href="#">{{ child.name }}</a>
+                                                        <span>{{ child.intro_desc }}</span>
                                                     </li>
                                                 {% endfor %}
                                             {% else %}

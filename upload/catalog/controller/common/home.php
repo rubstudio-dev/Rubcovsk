@@ -35,8 +35,8 @@ class ControllerCommonHome extends Controller
 		 * Отображаем меню
 		 *
 		 * Пример:
-		 * ~ {{ menu }} - категория
-		 * ~ {{ menu.org }} - организации внутри категории
+		 * ~ {{ menu }} - родительские категории
+		 * ~ {{ menu.child }} - дочерние категории
 		 */
 		$data['menu'] = $this->getMenu();
 
@@ -66,17 +66,16 @@ class ControllerCommonHome extends Controller
 		$this->load->model('catalog/organization_cat');
 
 		$arrayData = array();
-		$categories = $this->model_catalog_organization_cat->getOrganizationsCats();
+		$categoriesParent = $this->model_catalog_organization_cat->getOrganizationParentCats();
 
-		foreach ($categories as $category) {
+		foreach ($categoriesParent as $category) {
 			$arrayData[] = array(
 				'id' => $category['id'],
 				'name' => $category['name'],
-				'parent' => $this->model_catalog_organization_cat->getParentCatById($category['parent_id']) ?? false,
 				'alias' => $category['alias'],
 				'desc' => $category['description'],
-				// Организации внутри категории (массив, в противном случае false)
-				'org' => $this->model_catalog_organization->getOrganizationsByCatID($category['id']) ?? false
+				// Дочерние категории (массив, в противном случае false)
+				'child' => $this->model_catalog_organization_cat->getOrganizationsCats($category['id']) ?? false
 			);
 		}
 
