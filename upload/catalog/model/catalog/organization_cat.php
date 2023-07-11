@@ -35,7 +35,7 @@ class ModelCatalogOrganizationCat extends Model
 	}
 
 	/**
-	 * Возвращает список доерних категории на основе ID родителя
+	 * Возвращает список дочерних категорий на основе ID родителя
 	 *
 	 * @param $parent_cat_id
 	 * @return mixed

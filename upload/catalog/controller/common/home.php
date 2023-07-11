@@ -37,6 +37,7 @@ class ControllerCommonHome extends Controller
 		 * Пример:
 		 * ~ {{ menu }} - родительские категории
 		 * ~ {{ menu.child }} - дочерние категории
+		 * ~ {{ menu.child.org }} - организации внутри категории
 		 */
 		$data['menu'] = $this->getMenu();
 
