@@ -20,16 +20,20 @@
                                                 {% for child in cat.child %}
                                                     <li>
                                                         <span>
-                                                            {{ child.name }}<br>
+                                                            {{ child.name }}
                                                             {% if child.description %}
-                                                                <p class="text-muted mt-1">{{ child.description }}</p>
+                                                                <h6 class="text-muted">{{ child.description }}</h6>
                                                             {% endif %}
                                                         </span>
                                                         <ul>
                                                             {% if child.org %}
                                                                 {% for org in child.org %}
-                                                                    <a href="#">{{ org.name }}</a>
-                                                                    <span>{{ org.description }}</span>
+                                                                    <a href="#">
+                                                                        {{ org.name }}
+                                                                        {% if org.description %}
+                                                                            <h6 class="text-muted">{{ child.description }}</h6>
+                                                                        {% endif %}
+                                                                    </a>
                                                                 {% endfor %}
                                                             {% else %}
                                                                 <div class="m-3">
