@@ -1,3 +1,6 @@
+.mm-menu {
+}
+
 nav:not(.mm-menu) {
     display: none;
 }

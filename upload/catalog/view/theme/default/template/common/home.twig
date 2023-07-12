@@ -19,8 +19,25 @@
                                             {% if cat.child %}
                                                 {% for child in cat.child %}
                                                     <li>
-                                                        <a href="#">{{ child.name }}</a>
-                                                        <span>{{ child.description }}</span>
+                                                        <span>
+                                                            {{ child.name }}<br>
+                                                            {% if child.description %}
+                                                                <p class="text-muted mt-1">{{ child.description }}</p>
+                                                            {% endif %}
+                                                        </span>
+                                                        <ul>
+                                                            {% if child.org %}
+                                                                {% for org in child.org %}
+                                                                    <a href="#">{{ org.name }}</a>
+                                                                    <span>{{ org.description }}</span>
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                <div class="m-3">
+                                                                    <h5 class="text-muted text-center">Нету организаций!
+                                                                        😖</h5>
+                                                                </div>
+                                                            {% endif %}
+                                                        </ul>
                                                     </li>
                                                 {% endfor %}
                                             {% else %}
