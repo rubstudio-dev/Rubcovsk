@@ -13,12 +13,12 @@
                         <ul>
                             {% if menu %}
                                 {% for cat in menu %}
-                                    <li>
+                                    <li data-cat-id="{{ cat.id }}">
                                         <span>{{ cat.name }}</span>
                                         <ul>
-                                            {% if cat.child %}
-                                                {% for child in cat.child %}
-                                                    <li>
+                                            {% if childs %}
+                                                {% for child in childs %}
+                                                    <li data-cat-child-id="{{ child.id }}">
                                                         <span>
                                                             {{ child.name }}
                                                             {% if child.description %}
@@ -26,9 +26,9 @@
                                                             {% endif %}
                                                         </span>
                                                         <ul>
-                                                            {% if child.org %}
-                                                                {% for org in child.org %}
-                                                                    <a href="#">
+                                                            {% if orgs %}
+                                                                {% for org in orgs %}
+                                                                    <a data-org-id="{{ org.id }}" href="#">
                                                                         {{ org.name }}
                                                                         {% if org.description %}
                                                                             <h6 class="text-muted">{{ child.description }}</h6>

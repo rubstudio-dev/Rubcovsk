@@ -33,11 +33,6 @@ class ControllerCommonHome extends Controller
 
 		/**
 		 * Отображаем меню
-		 *
-		 * Пример:
-		 * ~ {{ menu }} - родительские категории
-		 * ~ {{ menu.child }} - дочерние категории
-		 * ~ {{ menu.child.org }} - организации внутри категории
 		 */
 		$data['menu'] = $this->getMenu();
 
@@ -54,6 +49,50 @@ class ControllerCommonHome extends Controller
 		$data['header'] = $this->load->controller('common/header');
 
 		$this->response->setOutput($this->load->view('common/home', $data));
+	}
+
+	/**
+	 * Динамическая подгрузка дочерних категорий
+	 *
+	 * @return void
+	 */
+	public function ajaxGetChild(): void
+	{
+		$this->load->model('catalog/organization_cat');
+
+		if (isset($this->request->post['parent_id'])) {
+			$data = $this->model_catalog_organization_cat->getOrganizationsCats($this->request->post['parent_id']);
+
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode([
+				'success' => true,
+				'message' => 'ok',
+				'parent_id' => $this->request->post['parent_id'],
+				'data' => $data
+			]));
+		}
+	}
+
+	/**
+	 * Динамическая подгрузка организаций внутри категории
+	 *
+	 * @return void
+	 */
+	public function ajaxGetOrgs(): void
+	{
+		$this->load->model('catalog/organization');
+
+		if (isset($this->request->post['child_id'])) {
+			$data = $this->model_catalog_organization->getOrganizationsByCatID($this->request->post['child_id']);
+
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode([
+				'success' => true,
+				'message' => 'ok',
+				'child_id' => $this->request->post['child_id'],
+				'data' => $data
+			]));
+		}
 	}
 
 	/**
@@ -74,9 +113,7 @@ class ControllerCommonHome extends Controller
 				'id' => $category['id'],
 				'name' => $category['name'],
 				'alias' => $category['alias'],
-				'desc' => $category['description'],
-				// Дочерние категории (массив, в противном случае false)
-				'child' => $this->model_catalog_organization_cat->getOrganizationsCats($category['id']) ?? false
+				'desc' => $category['description']
 			);
 		}
 
