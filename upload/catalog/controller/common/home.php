@@ -60,9 +60,16 @@ class ControllerCommonHome extends Controller
 	{
 		$this->load->model('catalog/organization_cat');
 
-		if (isset($this->request->get['parent_id'])) {
-			$data['childs'] = $this->model_catalog_organization_cat->getOrganizationsCats($this->request->get['parent_id']);
-			$this->response->setOutput($this->load->view('common/home', $data));
+		if (isset($this->request->post['parent_id'])) {
+			$data = $this->model_catalog_organization_cat->getOrganizationsCats($this->request->post['parent_id']);
+
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode([
+				'success' => true,
+				'message' => 'ok',
+				'parent_id' => $this->request->post['parent_id'],
+				'data' => $data
+			]));
 		}
 	}
 
@@ -75,9 +82,16 @@ class ControllerCommonHome extends Controller
 	{
 		$this->load->model('catalog/organization');
 
-		if (isset($this->request->get['child_id'])) {
-			$data['orgs'] = $this->model_catalog_organization->getOrganizationsByCatID($this->request->get['child_id']);
-			$this->response->setOutput($this->load->view('common/home', $data));
+		if (isset($this->request->post['child_id'])) {
+			$data = $this->model_catalog_organization->getOrganizationsByCatID($this->request->post['child_id']);
+
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode([
+				'success' => true,
+				'message' => 'ok',
+				'child_id' => $this->request->post['child_id'],
+				'data' => $data
+			]));
 		}
 	}
 
