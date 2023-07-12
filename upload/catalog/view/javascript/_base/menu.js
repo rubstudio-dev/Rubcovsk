@@ -34,14 +34,11 @@ $(document).ready(function () {
         $.ajax({
             url: 'index.php?route=common/home/ajaxGetChild',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'html',
             data: {
                 parent_id: parent_id
             },
-            success: function (json) {
-                if (json['success'] === true) {
-                    alert(json['data'][0]['name']);
-                }
+            success: function (response) {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -55,14 +52,11 @@ $(document).ready(function () {
         $.ajax({
             url: 'index.php?route=common/home/ajaxGetOrgs',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'html',
             data: {
                 child_id: child_id
             },
-            success: function (json) {
-                if (json['success'] === true) {
-                    alert(json['data'][0]['name']);
-                }
+            success: function (response) {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
