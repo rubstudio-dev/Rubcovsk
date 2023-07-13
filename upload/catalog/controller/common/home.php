@@ -71,6 +71,7 @@ class ControllerCommonHome extends Controller
 
 		foreach ($categoriesParent as $category) {
 			$arrayData[] = array(
+				// Родительские
 				'id' => $category['id'],
 				'name' => $category['name'],
 				'alias' => $category['alias'],
