@@ -1,5 +1,6 @@
 document.addEventListener(
     "DOMContentLoaded", () => {
+        // Менюшка
         const menu = new Mmenu(
             document.querySelector("#menu"),
             {
@@ -39,13 +40,21 @@ document.addEventListener(
                 language: 'ru' // локаль
             }
         );
-
         const api = menu.API;
 
+        // Открыть меню
         document.querySelector("#menu_open_btn")
             .addEventListener(
                 "click", () => {
                     api.open();
+                }
+            );
+
+        // Закрыть меню
+        document.querySelector("#menu_open_btn_close")
+            .addEventListener(
+                "click", () => {
+                    api.close();
                 }
             );
     }
