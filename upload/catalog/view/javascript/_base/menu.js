@@ -10,7 +10,7 @@ new Mmenu(
         searchfield: {
             add: true,
             placeholder: 'ул. Алтайская 88',
-            splash: '<p>Что ищем? 🙂</p>',
+            splash: '<h5 class="text-muted text-center">Что ищем? 🙂</h5>',
             title: 'Поиск',
         },
         // Навбары
