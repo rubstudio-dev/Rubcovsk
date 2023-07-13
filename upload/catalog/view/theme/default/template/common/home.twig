@@ -6,7 +6,7 @@
                 <div class="menu-block">
                     <div class="position-absolute m-2 z-1">
                         <a href="#menu" class="btn btn-light text-muted shadow-sm fs-4 rounded-circle m-1">
-                            <ion-icon name="menu-outline"></ion-icon>
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </a>
                     </div>
                     <nav id="menu">
@@ -14,12 +14,20 @@
                             {% if menu %}
                                 {% for cat in menu %}
                                     <li data-parent-cat-id="{{ cat.id }}">
-                                        <span>{{ cat.name }}</span>
+                                        <span>
+                                            {% if cat.icon %}
+                                                <i class="{{ cat.icon }}"></i>
+                                            {% endif %}
+                                            {{ cat.name }}
+                                        </span>
                                         <ul>
                                             {% if cat.child %}
                                                 {% for child in cat.child %}
                                                     <li data-child-cat-id="{{ child.id }}">
                                                         <span>
+                                                            {% if child.icon %}
+                                                                <i class="{{ child.icon }}"></i>
+                                                            {% endif %}
                                                             {{ child.name }}
                                                             {% if child.desc %}
                                                                 <h6 class="text-muted">{{ child.desc }}</h6>
