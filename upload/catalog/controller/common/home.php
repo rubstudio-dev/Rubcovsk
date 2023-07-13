@@ -63,7 +63,6 @@ class ControllerCommonHome extends Controller
 	 */
 	private function getMenu(): array
 	{
-		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
 
 		$arrayData = array();
@@ -77,7 +76,36 @@ class ControllerCommonHome extends Controller
 				'alias' => $category['alias'],
 				'desc' => $category['description'],
 				// Дочерние категории (массив, в противном случае false)
-				'child' => $this->model_catalog_organization_cat->getOrganizationsCats($category['id']) ?? false
+				'child' => $this->getCatsChild($category['id']) ?? false
+			);
+		}
+
+		return $arrayData;
+	}
+
+	/**
+	 * Возвращает массив с дочерними категориями
+	 *
+	 * @param $cat_id
+	 * @return array
+	 */
+	private function getCatsChild($cat_id): array
+	{
+		$this->load->model('catalog/organization');
+		$this->load->model('catalog/organization_cat');
+
+		$arrayData = array();
+		$categoriesChild = $this->model_catalog_organization_cat->getOrganizationsCats($cat_id);
+
+		foreach ($categoriesChild as $category) {
+			$arrayData[] = array(
+				// Дочерние
+				'id' => $category['id'],
+				'name' => $category['name'],
+				'alias' => $category['alias'],
+				'desc' => $category['description'],
+				// Организации (массив, в противном случае false)
+				'org' => $this->model_catalog_organization->getOrganizationsByCatID($category['id']) ?? false
 			);
 		}
 
