@@ -13,12 +13,12 @@
                         <ul>
                             {% if menu %}
                                 {% for cat in menu %}
-                                    <li>
+                                    <li data-parent-cat-id="{{ cat.id }}">
                                         <span>{{ cat.name }}</span>
                                         <ul>
                                             {% if cat.child %}
                                                 {% for child in cat.child %}
-                                                    <li>
+                                                    <li data-child-cat-id="{{ child.id }}">
                                                         <span>
                                                             {{ child.name }}
                                                             {% if child.desc %}
@@ -28,11 +28,11 @@
                                                         <ul>
                                                             {% if child.org %}
                                                                 {% for org in child.org %}
-                                                                    <li>
+                                                                    <li data-org-id="{{ org.id }}">
                                                                         <a href="#">
                                                                             {{ org.name }}
-                                                                            {% if org.intro_desc %}
-                                                                                <h6 class="text-muted">{{ org.intro_desc }}</h6>
+                                                                            {% if org.desc %}
+                                                                                <h6 class="text-muted">{{ org.desc }}</h6>
                                                                             {% endif %}
                                                                         </a>
                                                                     </li>

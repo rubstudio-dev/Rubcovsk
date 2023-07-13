@@ -25,7 +25,7 @@ class ModelCatalogOrganizationCat extends Model
 	 *
 	 * @return mixed
 	 */
-	public function getOrganizationParentCats(): mixed
+	public function getOrganizationParentCats()
 	{
 		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = 0";
 
@@ -40,7 +40,7 @@ class ModelCatalogOrganizationCat extends Model
 	 * @param $parent_cat_id
 	 * @return mixed
 	 */
-	public function getOrganizationsCats($parent_cat_id): mixed
+	public function getOrganizationsCats($parent_cat_id)
 	{
 		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = '" . (int)$parent_cat_id . "'";
 

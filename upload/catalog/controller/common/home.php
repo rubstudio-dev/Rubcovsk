@@ -65,6 +65,7 @@ class ControllerCommonHome extends Controller
 	{
 		$this->load->model('catalog/organization_cat');
 
+		// Получаем родительские категории
 		$arrayData = array();
 		$categoriesParent = $this->model_catalog_organization_cat->getOrganizationParentCats();
 
@@ -91,21 +92,48 @@ class ControllerCommonHome extends Controller
 	 */
 	private function getCatsChild($cat_id): array
 	{
-		$this->load->model('catalog/organization');
 		$this->load->model('catalog/organization_cat');
 
+		// Получаем дочерние категории
 		$arrayData = array();
 		$categoriesChild = $this->model_catalog_organization_cat->getOrganizationsCats($cat_id);
 
 		foreach ($categoriesChild as $category) {
 			$arrayData[] = array(
-				// Дочерние
+				// Дочерние категории
 				'id' => $category['id'],
 				'name' => $category['name'],
 				'alias' => $category['alias'],
 				'desc' => $category['description'],
 				// Организации (массив, в противном случае false)
-				'org' => $this->model_catalog_organization->getOrganizationsByCatID($category['id']) ?? false
+				'org' => $this->getOrganizations($category['id']) ?? false
+			);
+		}
+
+		return $arrayData;
+	}
+
+	/**
+	 * Возвращает массив с организациями
+	 *
+	 * @param $child_id
+	 * @return array
+	 */
+	private function getOrganizations($child_id): array
+	{
+		$this->load->model('catalog/organization');
+
+		// Получаем организации
+		$arrayData = array();
+		$organizations = $this->model_catalog_organization->getOrganizationsByCatID($child_id);
+
+		foreach ($organizations as $organization) {
+			$arrayData[] = array(
+				// Организации
+				'id' => $organization['id'],
+				'name' => $organization['name'],
+				'alias' => $organization['alias'],
+				'desc' => $organization['intro_desc']
 			);
 		}
 
