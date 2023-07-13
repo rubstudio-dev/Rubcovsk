@@ -9,7 +9,7 @@ new Mmenu(
         // Поиск
         searchfield: {
             add: true,
-            placeholder: 'ул. Алтайская 88',
+            placeholder: 'ул. Алтайская, дом 88',
             splash: '<h5 class="text-muted text-center">Что ищем? 🙂</h5>',
             title: 'Поиск',
         },
