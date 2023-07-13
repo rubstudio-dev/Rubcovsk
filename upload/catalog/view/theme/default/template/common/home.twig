@@ -21,19 +21,21 @@
                                                     <li>
                                                         <span>
                                                             {{ child.name }}
-                                                            {% if child.description %}
-                                                                <h6 class="text-muted">{{ child.description }}</h6>
+                                                            {% if child.desc %}
+                                                                <h6 class="text-muted">{{ child.desc }}</h6>
                                                             {% endif %}
                                                         </span>
                                                         <ul>
                                                             {% if child.org %}
                                                                 {% for org in child.org %}
-                                                                    <a href="#">
-                                                                        {{ org.name }}
-                                                                        {% if org.description %}
-                                                                            <h6 class="text-muted">{{ child.description }}</h6>
-                                                                        {% endif %}
-                                                                    </a>
+                                                                    <li>
+                                                                        <a href="#">
+                                                                            {{ org.name }}
+                                                                            {% if org.intro_desc %}
+                                                                                <h6 class="text-muted">{{ org.intro_desc }}</h6>
+                                                                            {% endif %}
+                                                                        </a>
+                                                                    </li>
                                                                 {% endfor %}
                                                             {% else %}
                                                                 <div class="m-3">
