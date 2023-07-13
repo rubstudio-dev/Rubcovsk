@@ -19,6 +19,9 @@
                                                 <i class="{{ cat.icon }}"></i>
                                             {% endif %}
                                             {{ cat.name }}
+                                            {% if cat.desc %}
+                                                <h6 class="text-muted mt-1">{{ cat.desc }}</h6>
+                                            {% endif %}
                                         </span>
                                         <ul>
                                             {% if cat.child %}
@@ -30,7 +33,7 @@
                                                             {% endif %}
                                                             {{ child.name }}
                                                             {% if child.desc %}
-                                                                <h6 class="text-muted">{{ child.desc }}</h6>
+                                                                <h6 class="text-muted mt-1">{{ child.desc }}</h6>
                                                             {% endif %}
                                                         </span>
                                                         <ul>
@@ -40,7 +43,7 @@
                                                                         <a href="#">
                                                                             {{ org.name }}
                                                                             {% if org.desc %}
-                                                                                <h6 class="text-muted">{{ org.desc }}</h6>
+                                                                                <h6 class="text-muted mt-1">{{ org.desc }}</h6>
                                                                             {% endif %}
                                                                         </a>
                                                                     </li>
