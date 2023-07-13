@@ -1,27 +1,39 @@
 new Mmenu(
     document.querySelector("#menu"),
     {
+        theme: 'white',
         // Счётчик
-        "counters": {
-            "add": true
+        counters: {
+            add: true
+        },
+        // Поиск
+        searchfield: {
+            add: true,
+            placeholder: 'ул. Алтайская 88',
+            splash: '<p>Что ищем? 🙂</p>',
+            title: 'Поиск',
         },
         // Навбары
-        "navbars": [
+        navbars: [
             {
-                "position": "top",
-                "content": [
-                    "searchfield" // поиск
-                ]
+                content: ['searchfield'],
             },
             {
-                "position": "bottom",
-                "content": [
-                    "Сделано с любовью ❤" // контент снизу страницы
+                content: ['prev', 'breadcrumbs', 'close'],
+            },
+            {
+                position: 'bottom',
+                content: [
+                    'Сделано с любовью ❤' // контент снизу страницы
                 ]
             }
         ]
     },
     {
-        "language": "ru" // локаль
+        searchfield: {
+            cancel: true,
+            clear: true,
+        },
+        language: 'ru' // локаль
     }
 );
