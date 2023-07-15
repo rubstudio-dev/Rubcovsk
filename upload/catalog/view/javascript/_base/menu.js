@@ -60,13 +60,5 @@ document.addEventListener(
                     api.open();
                 }
             );
-
-        // Закрыть меню
-        document.querySelector("#menu_open_btn_close")
-            .addEventListener(
-                "click", () => {
-                    api.close();
-                }
-            );
     }
 );
