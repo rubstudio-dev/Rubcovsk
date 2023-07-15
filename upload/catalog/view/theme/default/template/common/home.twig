@@ -16,7 +16,7 @@
                                     <li data-parent-cat-id="{{ cat.id }}">
                                         <span>
                                             {% if cat.icon %}
-                                                <i class="{{ cat.icon }}"></i>
+                                                <i class="text-muted {{ cat.icon }}"></i>
                                             {% endif %}
                                             {{ cat.name }}
                                             {% if cat.desc %}
@@ -29,7 +29,7 @@
                                                     <li data-child-cat-id="{{ child.id }}">
                                                         <span>
                                                             {% if child.icon %}
-                                                                <i class="{{ child.icon }}"></i>
+                                                                <i class="text-muted {{ child.icon }}"></i>
                                                             {% endif %}
                                                             {{ child.name }}
                                                             {% if child.desc %}
