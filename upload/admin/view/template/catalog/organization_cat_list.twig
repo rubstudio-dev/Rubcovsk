@@ -34,7 +34,6 @@
             </div>
             <div class="panel-body">
                 <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-organization-cat">
-                    <a href="{{ sort_name }}" class="{{ order|lower }}">Название</a>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -52,7 +51,12 @@
                                     {% else %}
                                         <a href="{{ sort_name }}">Название</a>
                                     {% endif %}</td>
-                                <td class="text-left">Родительская категория</td>
+                                <td class="text-left">{% if sort == 'parent_id' %}
+                                        <a href="{{ sort_parent_id }}" class="{{ order|lower }}">Родительская
+                                            категория</a>
+                                    {% else %}
+                                        <a href="{{ sort_parent_id }}">Родительская категория</a>
+                                    {% endif %}</td>
                                 <td class="text-left">Алиас</td>
                                 <td class="text-left">Описание</td>
                                 <td class="text-right">Действие</td>

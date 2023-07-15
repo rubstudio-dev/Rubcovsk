@@ -254,6 +254,7 @@ class ControllerCatalogOrganizationCat extends Controller
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		$data['sort_parent_id'] = $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . '&sort=parent_id' . $url, true);
 		$data['sort_name'] = $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url, true);
 		$data['sort_id'] = $this->url->link('catalog/organization_cat', 'user_token=' . $this->session->data['user_token'] . '&sort=id' . $url, true);
 

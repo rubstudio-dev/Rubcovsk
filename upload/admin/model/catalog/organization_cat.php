@@ -70,7 +70,8 @@ class ModelCatalogOrganizationCat extends Model
 
 		$sort_data = array(
 			'name',
-			'id'
+			'id',
+			'parent_id'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
