@@ -40,7 +40,7 @@
                                                             {% if child.org %}
                                                                 {% for org in child.org %}
                                                                     <li data-org-id="{{ org.id }}">
-                                                                        <a href="#">{{ org.name }}</a>
+                                                                        <a href="#org_{{ org.id }}">{{ org.name }}</a>
                                                                     </li>
                                                                 {% endfor %}
                                                             {% else %}
