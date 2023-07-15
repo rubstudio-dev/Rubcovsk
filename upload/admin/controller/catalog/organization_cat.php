@@ -217,6 +217,7 @@ class ControllerCatalogOrganizationCat extends Controller
 				'parent' => $parent_cat,
 				'alias' => $result['alias'],
 				'desc' => $result['description'],
+				'icon' => $result['icon'],
 				'delete' => $this->url->link('catalog/organization_cat/delete', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true),
 				'edit' => $this->url->link('catalog/organization_cat/edit', 'user_token=' . $this->session->data['user_token'] . '&id=' . $result['id'] . $url, true)
 			);
