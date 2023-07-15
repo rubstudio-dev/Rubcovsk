@@ -17,7 +17,7 @@ class ModelCatalogOrganizationCat extends Model
 	{
 		$cat_id = $this->db->getLastId();
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "org_categories SET id = '" . (int)$cat_id . "', name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "', parent_id = '" . (int)$data['parent_id'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "org_categories SET id = '" . (int)$cat_id . "', name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "', parent_id = '" . (int)$data['parent_id'] . "', icon = '" . $this->db->escape($data['icon']) . "'");
 
 		return $cat_id;
 	}
@@ -31,7 +31,7 @@ class ModelCatalogOrganizationCat extends Model
 	 */
 	public function editOrganizationCat($organization_cat_id, $data)
 	{
-		$this->db->query("UPDATE " . DB_PREFIX . "org_categories SET name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "', parent_id = '" . (int)$data['parent_id'] . "' WHERE id = '" . (int)$organization_cat_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "org_categories SET name = '" . $this->db->escape($data['name']) . "', alias = '" . $this->db->escape($data['alias']) . "', description = '" . $this->db->escape($data['description']) . "', parent_id = '" . (int)$data['parent_id'] . "', icon = '" . $this->db->escape($data['icon']) . "' WHERE id = '" . (int)$organization_cat_id . "'");
 	}
 
 	/**
