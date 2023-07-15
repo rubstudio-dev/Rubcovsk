@@ -1,3 +1,9 @@
+/**
+ * Rubcovsk.Online - Городской портал, основанный на карте
+ *
+ * Хелпер для карты
+ */
+
 // Получаем информацию о погоде
 $(window).load(function () {
     jQuery.get('https://api.openweathermap.org/data/2.5/weather?lat=51.547425&lon=81.231164&units=imperial&appid=ca6ff81b256ad199b3de759c58de182b', function (responseText) {

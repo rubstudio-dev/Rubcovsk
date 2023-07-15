@@ -1,3 +1,9 @@
+/**
+ * Rubcovsk.Online - Городской портал, основанный на карте
+ *
+ * API к MapBox
+ */
+
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RyaWtlcnVzIiwiYSI6ImNqcHhxYnR5YjBvaWg0NHRkc2g0NnNtanAifQ.3549JQDbk8rr2Vx4qhDYxA';
 const map = new mapboxgl.Map({
     container: 'map', // Choose from Mapbox's core styles, or make your own style with Mapbox Studio

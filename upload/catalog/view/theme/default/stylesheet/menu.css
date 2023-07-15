@@ -1,3 +1,9 @@
+/**
+ * Rubcovsk.Online - Городской портал, основанный на карте
+ *
+ * Стили для сайдбара
+ */
+
 .mm-menu {
 }
 
@@ -6,7 +12,9 @@ nav:not(.mm-menu) {
 }
 
 .menu-block {
+    /** Something... **/
 }
 
 #menu {
+    /** Something... **/
 }

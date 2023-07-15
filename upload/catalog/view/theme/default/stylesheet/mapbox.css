@@ -1,6 +1,13 @@
+/**
+ * Rubcovsk.Online - Городской портал, основанный на карте
+ *
+ * Стилизация карты
+ */
+
 .mapboxgl-map {
     height: 100vh;
 }
 
 #map {
+    /** Something... **/
 }

@@ -1,3 +1,9 @@
+/**
+ * Rubcovsk.Online - Городской портал, основанный на карте
+ *
+ * Основные стили страницы
+ */
+
 * {
     box-sizing: border-box;
 }
@@ -9,8 +15,5 @@
 }
 
 .main-container {
-    display: grid;
-    grid-template-columns: auto 100%;
-    justify-items: stretch;
-    align-items: stretch;
+    /** Something... **/
 }
