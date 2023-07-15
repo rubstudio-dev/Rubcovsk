@@ -376,6 +376,17 @@ class ControllerCatalogOrganizationCat extends Controller
 			$data['cat_description'] = '';
 		}
 
+		/**
+		 * ALTER TABLE oc_org_categories ADD icon varchar(255) NOT NULL;
+		 */
+		if (isset($this->request->post['icon'])) {
+			$data['cat_icon'] = $this->request->post['icon'];
+		} elseif (!empty($organization_cat_info)) {
+			$data['cat_icon'] = $organization_cat_info['icon'];
+		} else {
+			$data['cat_icon'] = '';
+		}
+
 		$data['parent_categories'] = $this->model_catalog_organization_cat->getOrganizationsCats();
 
 		$data['header'] = $this->load->controller('common/header');
