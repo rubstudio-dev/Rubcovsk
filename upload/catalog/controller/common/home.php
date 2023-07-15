@@ -76,6 +76,7 @@ class ControllerCommonHome extends Controller
 				'name' => $category['name'],
 				'alias' => $category['alias'],
 				'desc' => $category['description'],
+				'icon' => $category['icon'],
 				// Дочерние категории (массив, в противном случае false)
 				'child' => $this->getCatsChild($category['id']) ?? false
 			);
@@ -105,6 +106,7 @@ class ControllerCommonHome extends Controller
 				'name' => $category['name'],
 				'alias' => $category['alias'],
 				'desc' => $category['description'],
+				'icon' => $category['icon'],
 				// Организации (массив, в противном случае false)
 				'org' => $this->getOrganizations($category['id']) ?? false
 			);
