@@ -31,10 +31,10 @@
 <!-- Добавляем ссылки на сайт, документацию, форум -->	
 	<operation>
 		<search><![CDATA[
-		<li><a href="https://www.opencart.com" target="_blank"><i class="fa fa-opencart fa-fw"></i> {{ text_homepage }}</a></li>
+		<li><a href="https://www.opencart.com" target="_blank"><i class="fa-brands fa-opencart"></i> {{ text_homepage }}</a></li>
 		]]></search>
 		<add position="replace"><![CDATA[
-		<li><a href="http://opencart-russia.ru/" target="_blank"><i class="fa fa-opencart fa-fw"></i> {{ text_homepage }}</a></li>
+		<li><a href="http://opencart-russia.ru/" target="_blank"><i class="fa-brands fa-opencart"></i> {{ text_homepage }}</a></li>
 		]]></add>
 	</operation>
 	
