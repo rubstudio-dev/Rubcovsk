@@ -74,7 +74,12 @@
                                                        value="{{ organization_cat.id }}"/>
                                             {% endif %}</td>
                                         <td class="text-left">{{ organization_cat.id }}</td>
-                                        <td class="text-left">{{ organization_cat.name }}</td>
+                                        <td class="text-left">
+                                            {% if organization_cat.icon %}
+                                                <i class="{{ organization_cat.icon }}"></i>
+                                            {% endif %}
+                                            {{ organization_cat.name }}
+                                        </td>
                                         <td class="text-left">{{ organization_cat.parent }}</td>
                                         <td class="text-left">{{ organization_cat.alias }}</td>
                                         <td class="text-left">{{ organization_cat.desc }}</td>
