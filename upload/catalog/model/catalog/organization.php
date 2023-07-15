@@ -15,7 +15,7 @@ class ModelCatalogOrganization extends Model
 	 */
 	public function getOrganizationsByCatID($cat_id)
 	{
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE cat_id = '" . (int)$cat_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "org_items WHERE cat_id = '" . (int)$cat_id . "' ORDER BY name");
 
 		return $query->rows;
 	}

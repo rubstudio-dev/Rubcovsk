@@ -27,7 +27,7 @@ class ModelCatalogOrganizationCat extends Model
 	 */
 	public function getOrganizationParentCats()
 	{
-		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = 0";
+		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = 0 ORDER BY name";
 
 		$query = $this->db->query($sql);
 
@@ -42,7 +42,7 @@ class ModelCatalogOrganizationCat extends Model
 	 */
 	public function getOrganizationsCats($parent_cat_id)
 	{
-		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = '" . (int)$parent_cat_id . "'";
+		$sql = "SELECT * FROM " . DB_PREFIX . "org_categories WHERE parent_id = '" . (int)$parent_cat_id . "' ORDER BY name";
 
 		$query = $this->db->query($sql);
 
