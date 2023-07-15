@@ -6,7 +6,7 @@
                                        class="btn btn-primary"><i class="fa fa-plus"></i></a>
                 <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger"
                         onclick="confirm('{{ text_confirm }}') ? $('#form-organization-cat').submit() : false;"><i
-                            class="fa fa-trash-o"></i></button>
+                            class="fa fa-trash"></i></button>
             </div>
             <h1>Категории организаций</h1>
             <ul class="breadcrumb">
@@ -46,6 +46,7 @@
                                     {% else %}
                                         <a href="{{ sort_id }}">ID</a>
                                     {% endif %}</td>
+                                <td class="text-left">Иконка</td>
                                 <td class="text-left">{% if sort == 'name' %}
                                         <a href="{{ sort_name }}" class="{{ order|lower }}">Название</a>
                                     {% else %}
@@ -74,12 +75,12 @@
                                                        value="{{ organization_cat.id }}"/>
                                             {% endif %}</td>
                                         <td class="text-left">{{ organization_cat.id }}</td>
-                                        <td class="text-left">
+                                        <td class="text-center">
                                             {% if organization_cat.icon %}
                                                 <i class="{{ organization_cat.icon }}"></i>
                                             {% endif %}
-                                            {{ organization_cat.name }}
                                         </td>
+                                        <td class="text-left">{{ organization_cat.name }}</td>
                                         <td class="text-left">{{ organization_cat.parent }}</td>
                                         <td class="text-left">{{ organization_cat.alias }}</td>
                                         <td class="text-left">{{ organization_cat.desc }}</td>
@@ -89,13 +90,13 @@
                                                         class="fa fa-pencil"></i></a>
                                             <a data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger"
                                                onclick="confirm('{{ text_confirm }}') ? window.location.replace('{{ organization_cat.delete }}') : false;"><i
-                                                        class="fa fa-trash-o"></i></a>
+                                                        class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td class="text-center" colspan="7">{{ text_no_results }}</td>
+                                    <td class="text-center" colspan="8">{{ text_no_results }}</td>
                                 </tr>
                             {% endif %}
                             </tbody>
