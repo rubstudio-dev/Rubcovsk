@@ -205,7 +205,7 @@ class ControllerCatalogOrganizationCat extends Controller
 		$results = $this->model_catalog_organization_cat->getOrganizationsCats($filter_data);
 
 		foreach ($results as $result) {
-			$parent_cat = '~ Является родительской';
+			$parent_cat = '<span class="text-primary">~ Является родительской</span>';
 
 			if ($parent_name = $this->model_catalog_organization_cat->getParentCatById($result['parent_id'])) {
 				$parent_cat = $result['parent_id'] . '&nbsp;' . '(' . $parent_name . ')';
