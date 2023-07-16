@@ -70,6 +70,10 @@
                         <div class="col-sm-10">
                             <input type="text" name="icon" value="{{ cat_icon }}"
                                    placeholder="fa-solid fa-car" id="input-icon" class="form-control"/>
+                            {% if cat_icon %}
+                                <span>Превью: <i title="{{ cat_icon }}"
+                                                 class="text-muted {{ cat_icon }}"></i></span>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
